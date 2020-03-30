@@ -3,7 +3,7 @@
 -- =======================================================================================
 -- Plugin: ALT_ADDER.lua
 -- Programmer: Cooper Santillan
--- Last Modified: December 07 2019 05:55pm
+-- Last Modified: March 14, 2020 01:01pm
 -- =======================================================================================
 -- Description: References from the SETUP plugin a 'service content' sequence where
 --				the user stores all cue essentials (Walk In, Video, Host, etc...).
@@ -28,28 +28,19 @@
 
 
 -- =======================================================================================
--- ==== DO NOT TOUCH BELOW ===============================================================
--- =======================================================================================
-
-
--- =======================================================================================
 -- ==== MAIN: ALT_ADDER ==================================================================
 -- =======================================================================================
 local function ALT_ADDER()
+	local caller = "ALT_ADDER"
 	local altADDERcpy = localUser.serv_content -- updating the global variable
 
     local makerVar = 'MAKER' -- User Variable used in grandMA2 software
     							-- Keep as single string (no whitespace)
 
-	-- change colors on gma feedback/echo
-	local ESC_RED = string.char(27) .."[31m"
-	local ESC_GRN = string.char(27) .."[32m"
-	local ESC_YEL = string.char(27) .."[33m"
-	local ESC_WHT = string.char(27) .."[37m"
-
-	-- major show base classes
+	-- shortcut for GMA show objects
 	local G_OBJ = gma.show.getobj
 	local G_PRO = gma.show.property
+
 
 	-- confirming that the plugin was setup
 	local servHandle
@@ -61,9 +52,9 @@ local function ALT_ADDER()
 		servHandle = G_OBJ.handle("Sequence " ..altADDERcpy)
 	else
 		-- failed to confirm setup, please setup program
-		gma.gui.msgbox("ERROR" , "ALT_ADDER Plugin was NOT setup!\nPlease read manual for more information on setting up plugin!")
-		gma.feedback(ESC_WHT .."ALT_ADDER : " ..ESC_RED .."Plugin Error. ALT_ADDER is not setup.")
-		gma.echo(ESC_WHT .."ALT_ADDER : " ..ESC_RED .."Plugin Error. ALT_ADDER is not setup.")
+		maker.util.error(ESC_RED .."Plugin Error. ALT_ADDER is not setup.",
+						"ALT_ADDER Plugin was NOT setup!\nPlease read manual for more information on setting up plugin!",
+						caller)
 		return -13;
 	end
 
@@ -90,9 +81,9 @@ local function ALT_ADDER()
 	local assetVar = gma.user.getvar(makerVar)
 	if(assetVar == nil) then
 		-- user variable makerVar was not set
-		gma.gui.msgbox("ERROR" , "User Variable \'" ..makerVar .."\' is not set for a requested cue! \n Must set user variable to find cue")
-		gma.feedback(ESC_WHT .."ALT_ADDER : " ..ESC_RED .."Plugin Error. UserVar \'" ..makerVar .."\' was not found.")
-		gma.echo(ESC_WHT .."ALT_ADDER : " ..ESC_RED .."Plugin Error. UserVar \'" ..makerVar .."\' was not found.")
+		maker.util.error(ESC_RED .."Plugin Error. UserVar \'" ..makerVar .."\' was not found.",
+						"User Variable \'" ..makerVar .."\' is not set for a requested cue! \n Must set user variable to find cue",
+						caller)
 		return -13;
 	end
 
@@ -118,9 +109,9 @@ local function ALT_ADDER()
 
 	if not(bContinue) then
 		-- nothing was found or out of bounds
-		gma.gui.msgbox("ERROR" , "User Variable \'" ..makerVar .."\' is not found in the " ..altADDERcpy .." sequence! \n Must set user variable to exact cue name that has already been made!")
-		gma.feedback(ESC_WHT .."ALT_ADDER : " ..ESC_RED .."Plugin Error. " ..assetVar .." was not found in " ..altADDERcpy .." sequence")
-		gma.echo(ESC_WHT .."ALT_ADDER : " ..ESC_RED .."Plugin Error. " ..assetVar .." was not found in " ..altADDERcpy .." sequence")
+		maker.util.error(ESC_RED .."Plugin Error. " ..assetVar .." was not found in " ..altADDERcpy .." sequence",
+						"User Variable \'" ..makerVar .."\' is not found in the " ..altADDERcpy .." sequence! \n Must set user variable to exact cue name that has already been made!",
+						caller)
 		return -13;
 	end
 

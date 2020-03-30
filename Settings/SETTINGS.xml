@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MA xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schemas.malighting.de/grandma2/xml/MA" xsi:schemaLocation="http://schemas.malighting.de/grandma2/xml/MA http://schemas.malighting.de/grandma2/xml/3.3.4/MA.xsd" major_vers="3" minor_vers="3" stream_vers="4">
+	<Info datetime="2019-05-08T13:41:38" showfile="maker_setup" />
+
+	<Plugin index="0" execute_on_load="0" name="SETUP" luafile="SETUP.lua">
+		<Appearance Color="111111" />
+	</Plugin>
+	<Plugin index="1" execute_on_load="0" name="OBJ_MANAGE" luafile="OBJ_MANAGE.lua">
+		<Appearance Color="111111" />
+	</Plugin>
+	<Plugin index="2" execute_on_load="0" name="API_MAKER" luafile="API_MAKER.lua">
+		<Appearance Color="111111" />
+	</Plugin>
+</MA>
