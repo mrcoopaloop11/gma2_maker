@@ -1,133 +1,140 @@
-MAKER
--- Places a song after the last cue
--- Uses the $MAKER user variable
--- Sets the $MAKER user variable as nothing at end of plugin
--- Looks through the sequence library for song name
--- Can ignore the label name and use the number of the sequence
--- Searching songs are not case-sensitive
--- Ignores the left most column of your sequence/macro pool (You choose column size!)
+# Maker+ Plugin Suite
+Hello! Welcome to the Maker+ Suite for the GrandMA2 software.
+This plugin suite can be used to help keep organize where your song sequences are saved.
+It is also used to create, rename, copy, delete, assign, and trigger plugins/macros.
+
+---
+## User Manager Folder
+The **User Manager** folder consist of a set of plugins that are to manipulate items from the GrandMA2 software (i.e. Sequences, Macros, Effects, etc.)
+This range of plugins can vary from adjusting individual songs (Its sequence and addons) or it can manipulate a entire array of songs.
+
+### *BUILD Plugin*
+- Creates a sequence and requested addons for a new song
+- Assigns song onto the selected executor
+- Not able to name a song with punctuation
+- Not able to name a song with specific version number
+- Naming songs are not case-sensitive
+- Desired group can store default values to first cue of song (Important for tracking!)
 
 
-ALT_MAKER
--- Places a asset after the last cue
--- Uses the $MAKER user variable
--- Sets the $MAKER user variable as nothing at end of plugin
--- Looks through the sequence library for song name
--- Ignores the left most column of your sequence/macro pool (You choose column size!)
+### *RENAME Plugin*
+- Relabel a sequence and the addons associated to the sequence
+- Can type the name/number of the sequence you'd like to rename
+- Not able to name a song with punctuation
+- Not able to name a song with specific version number
+- Searching songs are not case-sensitive
+- Naming songs are not case-sensitive
 
 
-ADDER
--- Adds a song to the next cue
--- Uses the $MAKER user variable
--- Sets the $MAKER user variable as nothing at end of plugin
--- Looks through the sequence library for song name
--- Can ignore the label name and use the number of the sequence
--- Searching songs are not case-sensitive
--- Ignores the left most column of your sequence/macro pool (You choose column size!)
+### *REPLICATE Plugin*
+- Copies a song and creates another version
+- Can type the name of the song they would like copy
+- Can type the number of the song they would like copy
+- Rename the sequence content and addons content
+- Assigns song onto the selected executor
 
 
-ALT_ADDER
--- Adds a asset to the next cue
--- Uses the $MAKER user variable
--- Sets the $MAKER user variable as nothing at end of plugin
--- Looks through the sequence library for song name
--- Ignores the left most column of your sequence/macro pool (You choose column size!)
+### *REVISE Plugin*
+- Places a song onto the selected executor
+- Can type the name of the song they would like edit
+- Can type the number of the song they would like edit
+- Searching songs are not case-sensitive
 
 
-
-ARCHIVE
--- Creates a new sequence for your service
--- Labels sequence the upcoming Sunday's date if $MAKER user variable is not set
--- Asks what to label the sequence if $MAKER user variable is set to zero
-
-
-NEWSONG
--- Creates sequence and macros for new song
--- Assigns song onto the selected executor
--- Not able to name a song with punctuation
--- Not able to name a song with specific version number
--- Naming songs are not case-sensitive
--- Desired group can store default values to first cue of song (Important for tracking!)
--- Ignores the left most column of your sequence/macro pool (You choose column size!)
+### *SQUASH Plugin*
+- Deletes the sequence and addons from your song library
+- Can type the name of the song they would like edit
+- Can type the number of the song they would like edit
+- Searching songs are not case-sensitive
+- Gives you the option to condense MAKER+ libraries [NOTE: It condenses all of them]
 
 
-COPYSONG
--- Copies a song and creates another version
--- Can type the name of the song they would like copy
--- Can type the number of the song they would like copy
--- Rename the sequence label and the first cue
--- Rename the MAKER and ADDER macro labels
--- Rename the MAKER and ADDDER macro first line name
--- Assigns song onto the selected executor
--- Ignores the left most column of your sequence/macro pool (You choose column size!)
+### *FINDER Plugin*
+- Search for a song
+- Will blink the song sequence and all addons
+- Will turn the sequence/addons white and then resets the color
+- Searching songs is not case-sensitive
+- Can use the first a '-' followed by the first character of an addon to shortcut into using that addon
+  - i.e. ``'-m A SONG NAME'`` : Use MAKER addon after the search ends
+  - Can use '-e ' before typing the song they wish to find ; Assigning song to selected executor
 
 
-RENAME
--- Relabel a song and the maker and adder macros
--- Can type the name of the song they would like rename
--- Can type the number of the song they would rename
--- Not able to name a song with punctuation
--- Not able to name a song with specific version number
--- Searching songs are not case-sensitive
--- Naming songs are not case-sensitive
--- Ignores the left most column of your sequence/macro pool (You choose column size!)
+### *CONDENSE Plugin*
+- Helps condense your library for sequence pool and/or addons
+- Type number of last sequence/macro that is in your library to condense all in that range
+- If you leave the text input blank: shortcut --> condenses until it reaches something that has more than 3 spaces
 
 
-EDITSONG
--- Places a song onto the selected executor
--- Can type the name of the song they would like edit
--- Can type the number of the song they would like edit
--- Searching songs are not case-sensitive
--- Ignores the left most column of your sequence/macro pool (You choose column size!)
+### *REALPHA Plugin*
+- Reorganizes pool to alphabetical order within a continuous list
+
+### *REPAIR Plugin*
+- References sequence pool and creates new/updated addons associated in that sequences current order
+- Recommended to delete addons before using this BUT not required in order to work
+
+---
+## Addons Folder
+**Addons** are plugins that are to be used to perform a task. This typically is for an individual song.
+### *MAKER Plugin*
+- Places a song after the last cue
+- Uses the **$MAKER** user variable
+- Sets the **$MAKER** user variable as nothing at end of plugin
+- Looks through the sequence library for song name
+- Can ignore the label name and use the number of the sequence
+- Searching songs are not case-sensitive
 
 
-DELETESONG
--- Deletes the sequence and 2 macros (MAKER and ADDER) from your song library
--- Can type the name of the song they would like edit
--- Can type the number of the song they would like edit
--- Searching songs are not case-sensitive
--- Ignores the left most column of your sequence/macro pool (You choose column size!)
--- Gives you the option to condense MAKER+ libraries [NOTE: It condenses all of them]
+### *ALT_MAKER Plugin*
+- Places an asset after the last cue
+- Uses the **$MAKER** user variable
+- Sets the **$MAKER** user variable as nothing at end of plugin
+- Looks through the sequence library for song name
 
 
-CONDENSE
--- Helps condense your library for sequence pool
--- Helps condense your library for MAKER macro pool
--- Helps condense your library for ADDER macro pool
--- Type number of last sequence/macro that is in your library to condense all in that range
--- If you leave the text input blank: SHORTCUT condenses until it reaches something that has more than 3 spaces
--- Ignores the left most column of your sequence/macro pool (You choose column size!)
+### *ADDER Plugin*
+- Adds a song to the next cue
+- Uses the **$MAKER** user variable
+- Sets the **$MAKER** user variable as nothing at end of plugin
+- Looks through the sequence library for song name
+- Can ignore the label name and use the number of the sequence
+- Searching songs are not case-sensitive
 
 
-FINDER
--- Search for a song
--- Will blink the song sequence and MAKER and ADDER macros
--- Turns the sequence/macro white and then resets the color
--- Searching songs are not case-sensitive
--- Can use '-m ' before typing the song they wish to find ; Using MAKER after search ends
--- Can use '-a ' before typing the song they wish to find ; Using ADDER after search ends
--- Can use '-e ' before typing the song they wish to find ; Assigning song to selected executor
--- Ignores the left most column of your sequence/macro pool (You choose column size!)
+### *ALT_ADDER Plugin*
+- Adds an asset to the next cue
+- Uses the **$MAKER** user variable
+- Sets the **$MAKER** user variable as nothing at end of plugin
+- Looks through the sequence library for song name
 
+---
+## Companions Folder
+These are plugins that don't rely on the Maker+ libraries (Sequences/Addons) but these plugins do rely on the `SETUP` plugin `API_MANAGE` plugin
+### *ARCHIVE Plugin*
+- Creates a new sequence for your service
+- Asks what to label the sequence if **$MAKER** user variable is set to zero
+- Labels sequence the upcoming weekday's date if **$MAKER** user variable is not set
+  - The weekday's date: Is set from the `SETUP` plugin with the your user settings (i.e. `user.weekday = 'Sunday'`)
+- Assigns the new sequence on to your selected executor
 
-REALPHA
--- Reorganizes pool to alphabetical order within a continuous list
--- Ignores the left most column of your sequence/macro pool (You choose column size!)
+---
+## Settings Folder
+Make sure that this is set of plugin is **BEFORE** all other plugins of Maker+ suite in GrandMA2 plugin pool. The order of where this set of plugins matter!
+### *SETUP Plugin*
+- Manage multiple users of Maker+ and where data is stored
+- All other Maker+ plugins reference the `SETUP` plugin for where to put their data
+- If you make any changes with Maker+ plugins, press the `SETUP` plugin
+- **TIP:** Maker+ Users settings could, if desired, point to the same place as another users settings
 
+### *OBJ_MANAGE Plugin*
+- Where addons are integrated into the Maker+ suite
+- `maker.manager` directs external plugins *(User manager, addons, companions)* to do functions such as: `Create`, `Edit`, `Delete`, `Copy`, `Move`
+- `maker.manager` also directs external plugins to increment numbers
+  - Ignores the left most column of your sequence/macro pool (You choose column size!)
+  - Uses only the second column of your Maker+ view (You choose column size!)
+  - Every pool number is being used
 
-SETUP
--- MAKE SURE THAT THIS IS PLUGIN IS BEFORE ALL OTHER PLUGINS OF MAKER+ IN POOL
--- Manage multiple users of Maker+ and where data is stored
--- All other Maker+ plugins reference the SETUP plugin for where to put their data
--- If you make any changes in the SETUP plugin, exit MA editor and press SETUP plugin
--- TIP: Users variables could, if desired, point to the same place as another users
-
-
-
-
-
-MAKER API FUNCTIONS:
-
+### *API_MAKER Plugin*
+```lua
 maker.util.print(message, caller)
 maker.util.error(message, extra, caller)
 maker.util.prompt(pool, caller)
@@ -164,3 +171,4 @@ maker.move.alpha(user, poolIndex, caller)
 maker.request(user, poolIndex, seqArray, caller)
 
 maker.repair(user, poolIndex, caller)
+```
