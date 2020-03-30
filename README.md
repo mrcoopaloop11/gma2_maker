@@ -137,7 +137,7 @@ Make sure that this is set of plugin is **BEFORE** all other plugins of Maker+ s
 ```lua
 maker.util.print(message, caller)
 maker.util.error(message, extra, caller)
-maker.util.prompt(pool, caller)
+maker.util.prompt(pool, action)
 maker.util.input(user, poolIndex, strTitle, caller)
 maker.util.underVer(oldName, pool, verNum, caller)
 maker.util.round(num, numDecimalPlaces, caller)
@@ -153,8 +153,7 @@ maker.test.seq(user, caller)
 maker.test.archive(user, caller)
 
 maker.find.pool(user, poolName, caller)
-maker.find.operand(user, songName, caller)
-
+maker.find.operand(user, sName, caller)
 maker.find.avail(user, poolIndex, caller)
 maker.find.last(user, poolIndex, caller)
 maker.find.gap(user, poolIndex, caller)
@@ -162,8 +161,8 @@ maker.find.count(user, poolIndex, sName, caller)
 
 maker.find.ver.next(user, poolIndex, sName, caller)
 maker.find.ver.count(user, poolIndex, sName, caller)
-maker.find.ver.match(user, poolIndex, strName, caller)
-maker.find.ver.pick(user, songName, caller)
+maker.find.ver.match(user, poolIndex, sName, caller)
+maker.find.ver.pick(user, sName, caller)
 
 maker.move.obj(user, poolIndex, caller)
 maker.move.alpha(user, poolIndex, caller)
