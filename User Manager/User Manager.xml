@@ -17,10 +17,10 @@
 	<Plugin index="4" execute_on_load="0" name="REVISE" luafile="REVISE.lua">
 		<Appearance Color="00ffff" />
 	</Plugin>
-	<Plugin index="5" execute_on_load="0" name="CONDENSE" luafile="CONDENSE.lua">
+	<Plugin index="5" execute_on_load="0" name="FINDER" luafile="FINDER.lua">
 		<Appearance Color="00ffff" />
 	</Plugin>
-	<Plugin index="6" execute_on_load="0" name="FINDER" luafile="FINDER.lua">
+	<Plugin index="6" execute_on_load="0" name="CONDENSE" luafile="CONDENSE.lua">
 		<Appearance Color="00ffff" />
 	</Plugin>
 	<Plugin index="7" execute_on_load="0" name="REALPHA" luafile="REALPHA.lua">
