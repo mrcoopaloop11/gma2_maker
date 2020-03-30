@@ -3,9 +3,24 @@ Hello! Welcome to the Maker+ Suite for the GrandMA2 software.
 This plugin suite can be used to help keep organize where your song sequences are saved.
 It is also used to create, rename, copy, delete, assign, and trigger plugins/macros.
 
+Below is some information about how each plugin in this suite does. I encourage you to read through every plugin! There are tons of features that can hopefully speed up your process in creating songs.
+
+## How To Setup for My Showfile
+If you'd like to download this plugin suite for your showfile:
+There is a green button on the top of this repository *'Clone or Download'*.
+Click this button and then proceed to click the *'Download ZIP'*. Unzip file.
+Transfer the unzipped folder to a USB stick. You can then transfer the USB to your GrandMA2 console.
+
+Once you have the USB connected to your console, from your GrandMA2 software, create a new basic windows: `System` -> `Plugins`.
+`Edit` an empty space for a new plugin. On the bottom of this popup GUI, click on the `import` button. Change your `Select Drive` to the USB drive with the Maker+ plugin suite. Go through each folder and find a XML files that you'd to import.
+
+> *LUA* files won't show on `import` GUI. *XML* files help import *LUA* files into the plugin pool.
+
+Repeat process until you `import` all plugins you'd like in your showfile.
+
 ---
 ## User Manager Folder
-The **User Manager** folder consist of a set of plugins that are to manipulate items from the GrandMA2 software (i.e. Sequences, Macros, Effects, etc.)
+This set of plugins manipulate pool objects from the GrandMA2 software (i.e. Sequences, Macros, Effects, etc.)
 This range of plugins can vary from adjusting individual songs (Its sequence and addons) or it can manipulate a entire array of songs.
 
 ### *BUILD Plugin*
@@ -74,7 +89,7 @@ This range of plugins can vary from adjusting individual songs (Its sequence and
 
 ---
 ## Addons Folder
-**Addons** are plugins that are to be used to perform a task. This typically is for an individual song.
+**Addons** are plugins that are to be used to perform a task. This typically is for an individual song. Using the `SETUP` settings, you can have a addon created everytime a new sequence is created.
 ### *MAKER Plugin*
 - Places a song after the last cue
 - Uses the **$MAKER** user variable
@@ -171,3 +186,14 @@ maker.request(user, poolIndex, seqArray, caller)
 
 maker.repair(user, poolIndex, caller)
 ```
+
+---
+# FAQ
+
+Questions | Answers
+---|---|
+Does Maker+ work on MA3? | No.
+Why is this free? | Because I am a full time student, I don't have the time to help everyone. I also don't want the obligation of fixing events I'm not getting paid for anyways...
+I created something... Where did it go? | Check the Command Line History. At the end of every plugin is a summary of what the plugin did.
+I HAVE **IDEAS/BUGS**!!! | You can either create a `Issues` message on Github, email: csantillan@eastside.com, or DM on Instagram: **@mrcoopaloop11**
+Do you have YouTube videos? | [Coming Soon!](youtube.com)
