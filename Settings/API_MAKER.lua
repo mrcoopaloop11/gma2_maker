@@ -3,7 +3,7 @@
 -- =======================================================================================
 -- Plugin: API_MAKER.lua
 -- Programmer: Cooper Santillan
--- Last Modified: May 30, 2020 12:22am
+-- Last Modified: May 30, 2020 03:08pm
 -- =======================================================================================
 -- Description: All functions used to maintain the Maker+ plugin suite.
 -- =======================================================================================
@@ -576,7 +576,6 @@ end
 -- Output: Returns an empty pool space
 -- =======================================================================================
 function maker.find.avail(user, poolIndex, caller)
-	local G_OBJ = gma.show.getobj
 	local currPool = maker.manage("Pool", user, poolIndex)
 	local countPoolNum = maker.manage("Current", user, poolIndex, user.first[poolIndex])
 	local poolHandle = G_OBJ.handle(currPool .." " ..countPoolNum)
@@ -628,7 +627,6 @@ end
 -- Output: Number of last pool object in at least 2 gap
 -- =======================================================================================
 function maker.find.gap(user, poolIndex, caller)
-	local G_OBJ = gma.show.getobj
 	local countPool = maker.manage("Current", user, poolIndex, user.first[poolIndex])
 	local gapValue = countPool
 	local currPool = maker.manage("Pool", user, poolIndex)
@@ -669,7 +667,6 @@ end
 -- Output: Returns number times name matched with other macros labels
 -- =======================================================================================
 function maker.find.count(user, poolIndex, sName, caller)
-	local G_OBJ = gma.show.getobj
 	local manipName = string.upper(sName)
 	local currPool = maker.manage("Pool", user, poolIndex)
 	local countPoolNum = maker.manage("Current", user, poolIndex, user.first[poolIndex])
@@ -770,7 +767,6 @@ end
 -- Output: Returns number times name matched with other macros labels
 -- =======================================================================================
 function maker.find.ver.next(user, poolIndex, sName, caller)
-	local G_OBJ = gma.show.getobj
 	local manipName = string.gsub(sName:upper() , " " , "_") -- Convert to upper case to find all versions
 	local currPool = maker.manage("Pool", user, poolIndex)
 	local tempSong
@@ -836,7 +832,6 @@ end
 -- Output: Returns an empty pool space
 -- =======================================================================================
 function maker.find.ver.count(user, poolIndex, sName, caller)
-    local G_OBJ = gma.show.getobj
     local reqSong = sName
 	local currPool = maker.manage("Pool", user, poolIndex)
 	local countPoolNum = maker.manage("Current", user, poolIndex, user.first[poolIndex])
@@ -882,7 +877,6 @@ end
 -- Output: Nothing
 -- =======================================================================================
 function maker.find.ver.match(user, poolIndex, sName, caller)
-	local G_OBJ = gma.show.getobj
 	local array = {}
 	local tempSong
 	local currPool = maker.manage("Pool", user, poolIndex)
@@ -928,7 +922,6 @@ end
 -- Output: Song Sequence matching number , MAKER macro matching number, ADDER macro matching number
 -- =======================================================================================
 function maker.find.ver.pick(user, sName, caller)
-	local G_OBJ = gma.show.getobj
 	local manipName = string.gsub(string.upper(sName) , " " , "_") -- Convert to upper case to find all versions
 	local boolContinue = true
 	local userReq
@@ -1041,7 +1034,6 @@ end
 -- Output: Nothing
 -- =======================================================================================
 function maker.move.obj(user, poolIndex, caller)
-	local G_OBJ = gma.show.getobj
 	local currPool = maker.manage("Pool", user, poolIndex)
 	local loopIndex = maker.manage("Current", user, poolIndex, user.first[poolIndex])
 	local counterGap = loopIndex
@@ -1057,7 +1049,6 @@ function maker.move.obj(user, poolIndex, caller)
 
 			if (counterGap <= last) then
 				maker.manage("Move", user, poolIndex, counterGap, loopIndex)
-				--gma.cmd("Move " ..currPool .." " ..counterGap .." At " ..currPool .." " ..loopIndex)
 			end
 		end
 
@@ -1211,7 +1202,6 @@ function maker.repair(user, poolIndex, caller)
 	local countPoolNum = maker.manage("Current", user, 1, user.first[1])
 	local repairCount = maker.manage("Current", user, poolIndex, user.first[poolIndex])
 	local seqPool = maker.manage("Pool", user, 1)
-	local G_OBJ = gma.show.getobj
 	local poolHandle = G_OBJ.handle(seqPool .." " ..countPoolNum)
 	local songName, singleString
 
