@@ -201,62 +201,54 @@ end
 -- Output: String
 -- =======================================================================================
 function maker.util.thru(numArray, caller)
-    local matchingSongs = numArray
-    local wholeNumbers
-    local bContinue = true
-    local counter = 1
-    local anotherCounter = 0
+	local groupSize = 3 -- control threshold of size of a thru group
 
-    while counter <= #matchingSongs do
-        if ((matchingSongs[counter + 1] ~= nil) and (matchingSongs[counter] == (matchingSongs[counter + 1]) - 1)) then
-            if ((matchingSongs[counter + 2] ~= nil) and (matchingSongs[counter + 1] == (matchingSongs[counter + 2]) - 1)) then
-                repeat
-                    if (matchingSongs[counter + 3 + anotherCounter] ~= nil) then
-                        if (matchingSongs[counter + 2 + anotherCounter] == (matchingSongs[counter + 3 + anotherCounter]) - 1) then
-                            anotherCounter = anotherCounter + 1
-                            bContinue = false
-                        else
-                            bContinue = true
-                        end
-                    else
-                        bContinue = true
-                    end
-                until bContinue
+    local allNumStr = ''
+    local operator = ''
+    local lastNum = nil
+    local i = 1
+    local j -- look forward for thru groups
+    local k -- keeps place of initial traverse before looking ahead
+    local cFlag = groupSize -- count flag -> how big does a group have to be
+    local gFlag = false -- group flag -> true if you start a group that follows another
+    local fFlag = false -- first flag -> true if it is the first group in the array
 
-                if (counter == 1) then
-                    wholeNumbers = matchingSongs[counter] .." Thru " ..matchingSongs[counter + 2 + anotherCounter]
-                else
-                    wholeNumbers = wholeNumbers .." + " ..matchingSongs[counter] .." Thru " ..matchingSongs[counter + 2 + anotherCounter]
-                end
-                counter = counter + 2 + anotherCounter
-                anotherCounter = 0
-                bContinue = true
-
-            elseif ((matchingSongs[counter + 2] ~= nil) and (matchingSongs[counter + 1] ~= (matchingSongs[counter + 2]) - 1)) then
-                if (counter == 1) then
-                    wholeNumbers = matchingSongs[counter] .." + " ..matchingSongs[counter + 1]
-                else
-                    wholeNumbers = wholeNumbers .." + " ..matchingSongs[counter] .." + " ..matchingSongs[counter + 1]
-                end
-                counter = counter + 1
-            elseif (matchingSongs[counter + 2] == nil) then
-                if (counter == 1) then
-                    wholeNumbers = matchingSongs[counter]
-                else
-                    wholeNumbers = wholeNumbers .." + " ..matchingSongs[counter]
-                end
+    while(i <= #numArray) do
+        if(numArray[i+1]) then
+            j = i
+            k = i
+            if (i == 1) then
+                fFlag = true
             end
+            lastNum = numArray[i]
+            while ((numArray[j+1]) and (numArray[j] == numArray[j+1] - 1)) do
+                cFlag = cFlag - 1
+                if(cFlag <= 1) then
+                    operator = ' Thru '
+                    i = j + 1
+                    lastNum = numArray[j + 1]
+                    gFlag = true
+                end
+                j = j + 1
+
+            end
+            if ((gFlag) and not(fFlag)) then
+                allNumStr = allNumStr ..' + ' ..numArray[k]
+            end
+            if ((gFlag) and (fFlag)) then
+                allNumStr = numArray[1]
+            end
+            allNumStr = allNumStr ..operator ..lastNum
+            operator = ' + '
+            cFlag = groupSize
+            fFlag = false
+            gFlag = false
         else
-            if (counter == 1) then
-                wholeNumbers = matchingSongs[counter]
-            else
-                wholeNumbers = wholeNumbers .." + " ..matchingSongs[counter]
-            end
+            allNumStr = allNumStr ..operator ..numArray[i]
         end
-        counter = counter + 1
+        i = i + 1
     end
-
-    return wholeNumbers;
+    return allNumStr
 end
 -- ==== END OF maker.util.thru ===========================================================
 
