@@ -234,8 +234,7 @@ function maker.util.thru(numArray, caller)
             end
             if ((gFlag) and not(fFlag)) then
                 allNumStr = allNumStr ..' + ' ..numArray[k]
-            end
-            if ((gFlag) and (fFlag)) then
+            elseif ((gFlag) and (fFlag)) then
                 allNumStr = numArray[1]
             end
             allNumStr = allNumStr ..operator ..lastNum
