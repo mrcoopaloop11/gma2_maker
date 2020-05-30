@@ -20,12 +20,12 @@ Repeat process until you `import` all plugins you'd like in your showfile.
 
 ---
 ## User Manager Folder
-This set of plugins manipulate pool objects from the GrandMA2 software (i.e. Sequences, Macros, Effects, etc.)
+This set of plugins can manipulate pool objects from the GrandMA2 software (i.e. Sequences, Macros, Effects, etc.).
 This range of plugins can vary from adjusting individual songs (Its sequence and addons) or it can manipulate a entire array of songs.
 
 ### *BUILD Plugin*
-- Creates a sequence and requested addons for a new song
-- Assigns song onto the selected executor
+- Creates a sequence and the requested addons for a new song
+- Assigns song's first addon onto the selected executor
 - Not able to name a song with punctuation
 - Not able to name a song with specific version number
 - Naming songs are not case-sensitive
@@ -133,7 +133,7 @@ These are plugins that don't rely on the Maker+ libraries (Sequences/Addons) but
 
 ---
 ## Settings Folder
-Make sure that this is set of plugin is **BEFORE** all other plugins of Maker+ suite in GrandMA2 plugin pool. The order of where this set of plugins matter!
+Make sure that this set of plugins are **BEFORE** all other plugins of the Maker+ suite in GrandMA2 plugin pool. The order of where this set of plugins matter!
 ### *SETUP Plugin*
 - Manage multiple users of Maker+ and where data is stored
 - All other Maker+ plugins reference the `SETUP` plugin for where to put their data
@@ -173,6 +173,7 @@ maker.find.avail(user, poolIndex, caller)
 maker.find.last(user, poolIndex, caller)
 maker.find.gap(user, poolIndex, caller)
 maker.find.count(user, poolIndex, sName, caller)
+maker.find.strOrNum(user, sName, caller)
 
 maker.find.ver.next(user, poolIndex, sName, caller)
 maker.find.ver.count(user, poolIndex, sName, caller)
@@ -192,8 +193,7 @@ maker.repair(user, poolIndex, caller)
 
 Questions | Answers
 ---|---|
-Does Maker+ work on MA3? | No.
-Why is this free? | Because I am a full time student, I don't have the time to help everyone. I also don't want the obligation of fixing events I'm not getting paid for anyways...
-I created something... Where did it go? | Check the Command Line History. At the end of every plugin is a summary of what the plugin did.
-I HAVE **IDEAS/BUGS**!!! | You can either create a `Issues` message on Github, email: csantillan@eastside.com, or DM on Instagram: **@mrcoopaloop11**
-Do you have YouTube videos? | [Coming Soon!](youtube.com)
+Does Maker+ work on MA3? | Not at the moment.
+I used on of the User Managers and I have no idea where it went  :( | Check the Command Line History. At the end of every plugin is a summary of what the plugin did.
+I HAVE **IDEAS/BUGS**!!! | You can either create a `Issues` message on Github, email: csantillan@eastside.com, or DM on Instagram: **@mrcoopaloop**
+Do you have tutorial videos? | [Coming Soon!](youtube.com)
