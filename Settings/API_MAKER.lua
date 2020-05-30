@@ -42,8 +42,8 @@
 -- Output: Nothing
 -- =======================================================================================
 function maker.util.print(message, caller)
-	gma.feedback(ESC_WHT ..caller .." : " ..message)
-	gma.echo(ESC_WHT ..caller .." : " ..message)
+	gma.feedback(ESC_WHT ..caller .." : " ..tostring(message))
+	gma.echo(ESC_WHT ..caller .." : " ..tostring(message))
 end
 -- ==== END OF maker.util.print ==========================================================
 
@@ -528,7 +528,7 @@ function maker.find.pool(user, poolName, caller)
 
 	for poolIndex=1, macroAmount do
 		if (poolName:upper() == user.name[poolIndex]:upper()) then
-			return poolIndex;
+			return user.first[poolIndex];
 		end
 	end
 	return false;
@@ -692,13 +692,78 @@ function maker.find.count(user, poolIndex, sName, caller)
 			return countPoolNum;
 		end
 
-		countPoolNum = maker.manage("Inc", user, poolIndex, countPoolNum, 0)
+		countPoolNum = maker.manage("Inc", user, poolIndex, countPoolNum, 1)
 		poolHandle = G_OBJ.handle(currPool .." " ..countPoolNum)
 	end
 
 	return false;
 end
 -- ==== END OF maker.find.count ==========================================================
+
+
+
+-- ==== maker.find.strOrNum ==============================================================
+-- Description: Checks a continuous list of sequences to see if it's name already exists.
+--				It must be entirely right without case-sensitivity. If you pass by a
+--				a number, it will skip the sequence string search but will search addons
+--				labels for matching sequence from number.
+--
+-- Inputs:
+--		user		-- which user in SETUP plugin to use
+--		sName		-- string name or number to match in library
+--		caller		-- what plugin is using this function
+--
+-- Output: Returns an array of pool numbers for desired song || returns false if error
+-- =======================================================================================
+function maker.find.strOrNum(user, sName, caller)
+	local addonIndex, mainPool, addonPool
+	local locations = {}
+
+	local macroAmount = maker.test.count(user, caller)
+	if not(macroAmount) then
+		maker.util.error("Setup -> Add-ons were not setup completely!", nil, caller)
+		return false
+	end
+
+	if (tonumber(sName) == nil) then
+		locations = maker.find.ver.pick(user, sName, caller)
+		if not(locations) then
+			maker.util.error("Could not find " ..sName .." in your library!", nil, caller)
+			return false;
+		end
+	else
+		locations[1] = tonumber(sName)
+		mainPool = maker.manage("Pool", user, 1)
+		if (G_OBJ.verify(G_OBJ.handle(mainPool .." " ..locations[1]))) then
+			for i=2, macroAmount do
+				currPool = maker.manage("Pool", user, i)
+				addonIndex = maker.manage("Current", user, i, user.first[i])
+				while (addonIndex <= user.last[i]) do
+				    if (G_OBJ.label(G_OBJ.handle(currPool .." " ..addonIndex)) == string.gsub(G_OBJ.label(G_OBJ.handle(mainPool .." " ..locations[1])) , "_" , " ")) then
+						-- its important that in all libraries, each object has a unique name
+				        locations[i] = addonIndex
+				    end
+				    addonIndex = maker.manage("Inc", user, i, addonIndex, 0)
+				end
+			end
+
+			for i=1, macroAmount do
+				if not(locations[i]) then
+					maker.util.error(ESC_RED .."Please use repairing plugin. Missing objects in song library. Try again later.", nil, caller)
+					return false;
+				end
+			end
+		else
+			maker.util.error(ESC_RED ..mainPool .." " ..sName .." does not exist.",
+							"The number you have requested does not exist in the " ..mainPool .." library!",
+							caller)
+			return false;
+		end
+	end
+
+	return locations
+end
+-- ==== END OF maker.find.strOrNum =======================================================
 
 
 
