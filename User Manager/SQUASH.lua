@@ -3,7 +3,7 @@
 -- =======================================================================================
 -- Plugin: SQUASH.lua
 -- Programmer: Cooper Santillan
--- Last Modified: March 14, 2020 01:01pm
+-- Last Modified: May 30, 2020 12:22am
 -- =======================================================================================
 -- Description: Will prompt the user for a sequence label or number the user would like to
 --				delete from their Maker+ Library. Will additionally ask if the user would

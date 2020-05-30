@@ -3,7 +3,7 @@
 -- =======================================================================================
 -- Plugin: REPLICATE.lua
 -- Programmer: Cooper Santillan
--- Last Modified: March 14, 2020 01:01pm
+-- Last Modified: May 30, 2020 12:22am
 -- =======================================================================================
 -- Description: Will prompt the user for the label or sequence number of a requested song
 --				to copy: song's sequence, Maker macro, and Adder macro. Will automatically

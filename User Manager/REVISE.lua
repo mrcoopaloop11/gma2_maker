@@ -3,7 +3,7 @@
 -- =======================================================================================
 -- Plugin: REVISE.lua
 -- Programmer: Cooper Santillan
--- Last Modified: March 14, 2020 01:01pm
+-- Last Modified: May 30, 2020 12:22am
 -- =======================================================================================
 -- Description: Prompts the user for either the label or sequence number of a requested
 --				song and assigns the song on to the selected executor. Additionally will

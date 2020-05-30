@@ -3,7 +3,7 @@
 -- =======================================================================================
 -- Plugin: RENAME.lua
 -- Programmer: Cooper Santillan
--- Last Modified: March 14, 2020 01:01pm
+-- Last Modified: May 30, 2020 12:22am
 -- =======================================================================================
 -- Description: Within the Maker+ library, RENAME is able to relabel a song to a different
 --				name. Using this plugin will still limit the characters that are not
