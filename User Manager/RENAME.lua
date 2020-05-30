@@ -80,46 +80,8 @@ local function RENAME()
 	gma.echo(ESC_RED .."========================" ..ESC_WHT .."-INTENTIONAL-SYNTAX-ERROR-START-" ..ESC_RED .."========================")
 	for i=1, macroAmount do user.last[i] = maker.find.avail(user, i, caller) end
 	gma.echo(ESC_RED .."========================" ..ESC_WHT .."-INTENTIONAL-SYNTAX-ERROR-END-" ..ESC_RED .."==========================")
-	local index
-	local locations = {}
-
-
-	if (tonumber(renameSong) == nil) then
-		locations = maker.find.ver.pick(user, renameSong)
-		if not(locations) then
-			maker.util.error("Could not find " ..renameSong .." in your library!", nil, caller)
-			return false;
-		end
-	else
-		locations[1] = tonumber(renameSong)
-
-		bContinue = true
-		currPool = maker.manage("Pool", user, 1)
-		if (G_OBJ.verify(G_OBJ.handle(currPool .." " ..locations[1]))) then
-			currPool = maker.manage("Pool", user, i)
-			index = maker.manage("Current", user, i, user.first[i])
-			last = maker.find.last(user, i, caller)
-
-			while (index <= last) do
-			    if (G_OBJ.label(G_OBJ.handle(currPool .." " ..index)) == string.gsub(G_OBJ.label(G_OBJ.handle("Sequence " ..locations[1])) , "_" , " ")) then
-			        locations[i] = index
-			    end
-			    index = maker.manage("Inc", user, i, index, 0)
-			end
-
-			for i=1, macroAmount do
-				if not(locations[i]) then
-					maker.util.error(ESC_RED .."Please use repairing plugin. Missing objects in song library. Try again later.", nil, caller)
-					return false;
-				end
-			end
-		else
-			maker.util.error(ESC_RED .."Macro " ..renameSong .." does not exist.",
-							"The number you have requested does not exist in the macro library!",
-							caller)
-			return false;
-		end
-	end
+	local locations = maker.find.strOrNum(user, renameSong, caller)
+	if (locations == false) then return false end
 
 	renameSong = G_OBJ.label(G_OBJ.handle(maker.manage("Pool", user, 1) .." " ..locations[1]))
 	renameSong = renameSong:gsub("_V%d+" , "")
