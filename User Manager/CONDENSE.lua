@@ -3,10 +3,12 @@
 -- =======================================================================================
 -- Plugin: CONDENSE.lua
 -- Programmer: Cooper Santillan
--- Last Modified: March 14, 2020 01:01pm
+-- Last Modified: March 30, 2020 06:28pm
 -- =======================================================================================
--- Description:
---
+-- Description: Able to remove all gaps that would typically prevent a library to stop
+--				see potentially other sequence/addon canditates. Prompts user for each
+--				library. Will have a tolerance of two gaps to find another object, third
+--				gap will assume library is finished.
 -- =======================================================================================
 
 -- Which user is this for? (Refer to SETUP Plugin)
@@ -30,8 +32,8 @@
 -- =======================================================================================
 -- ==== MAIN: CONDENSE ===================================================================
 -- =======================================================================================
+local caller = select(2,...):gsub("%d+$", "") -- label of the plugin
 local function CONDENSE()
-	local caller = "CONDENSE"
 	local user = localUser
 	local currPool
 
