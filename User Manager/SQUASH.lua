@@ -3,7 +3,7 @@
 -- =======================================================================================
 -- Plugin: SQUASH.lua
 -- Programmer: Cooper Santillan
--- Last Modified: May 30, 2020 12:22am
+-- Last Modified: March 30, 2020 06:28pm
 -- =======================================================================================
 -- Description: Will prompt the user for a sequence label or number the user would like to
 --				delete from their Maker+ Library. Will additionally ask if the user would
@@ -30,10 +30,9 @@
 -- =======================================================================================
 -- ==== MAIN: SQUASH =====================================================================
 -- =======================================================================================
+local caller = select(2,...):gsub("%d+$", "") -- label of the plugin
 local function SQUASH()
 	local user = localUser
-	local caller = "SQUASH"
-	local G_OBJ = gma.show.getobj
 
 	if not(maker.test.seq(user, caller)) then return false; end
 	if not(maker.test.pool(user, caller)) then return false; end

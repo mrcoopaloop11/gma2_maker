@@ -3,7 +3,7 @@
 -- =======================================================================================
 -- Plugin: BUILD.lua
 -- Programmer: Cooper Santillan
--- Last Modified: March 14, 2020 01:01pm
+-- Last Modified: March 30, 2020 06:28pm
 -- =======================================================================================
 -- Input for plugin:
 -- 			1. Group with all programmable fixtures (Called "All")
@@ -50,12 +50,11 @@
 -- =======================================================================================
 -- ==== MAIN: BUILD ======================================================================
 -- =======================================================================================
+local caller = select(2,...):gsub("%d+$", "") -- label of the plugin
 local function BUILD()
 	-- store global variables (on the very top of plugin editor) to local variables
 	-- this ensures every run will update a new starting pool number
 	local user = localUser
-	local caller = "BUILD"
-	local G_OBJ = gma.show.getobj
 
     local makerVar = 'MAKER' -- User Variable used in grandMA2 software
     							-- Keep as single string (no whitespace)

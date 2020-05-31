@@ -3,7 +3,7 @@
 -- =======================================================================================
 -- Plugin: REVISE.lua
 -- Programmer: Cooper Santillan
--- Last Modified: May 30, 2020 12:22am
+-- Last Modified: March 30, 2020 06:28pm
 -- =======================================================================================
 -- Description: Prompts the user for either the label or sequence number of a requested
 --				song and assigns the song on to the selected executor. Additionally will
@@ -30,10 +30,9 @@
 -- =======================================================================================
 -- ==== MAIN: REVISE =====================================================================
 -- =======================================================================================
+local caller = select(2,...):gsub("%d+$", "") -- label of the plugin
 local function REVISE()
 	local user = localUser
-	local caller = "REVISE"
-	local G_OBJ = gma.show.getobj
 
 	if not(maker.test.seq(user, caller)) then return false; end
 	if not(maker.test.pool(user, caller)) then return false; end

@@ -3,7 +3,7 @@
 -- =======================================================================================
 -- Plugin: FINDER.lua
 -- Programmer: Cooper Santillan
--- Last Modified: March 14, 2020 01:01pm
+-- Last Modified: March 30, 2020 06:28pm
 -- =======================================================================================
 -- Description: User can type the song they are looking for in a continuous list of
 --              macros. Starting from the first song, the range of the search will end at
@@ -30,9 +30,9 @@
 -- =======================================================================================
 -- ==== MAIN: FINDER =====================================================================
 -- =======================================================================================
+local caller = select(2,...):gsub("%d+$", "") -- label of the plugin
 local function FINDER()
 	local user = localUser
-	local caller = "FINDER"
 
 	local makerVar = 'MAKER' -- User Variable used in grandMA2 software
 							-- Keep as single string (no whitespace)

@@ -3,7 +3,7 @@
 -- =======================================================================================
 -- Plugin: REPLICATE.lua
 -- Programmer: Cooper Santillan
--- Last Modified: May 30, 2020 12:22am
+-- Last Modified: March 30, 2020 06:28pm
 -- =======================================================================================
 -- Description: Will prompt the user for the label or sequence number of a requested song
 --				to copy: song's sequence, Maker macro, and Adder macro. Will automatically
@@ -30,10 +30,9 @@
 -- =======================================================================================
 -- ==== MAIN: REPLICATE ==================================================================
 -- =======================================================================================
+local caller = select(2,...):gsub("%d+$", "") -- label of the plugin
 local function REPLICATE()
 	local user = localUser
-	local caller = "REPLICATE"
-	local G_OBJ = gma.show.getobj
 
     local makerVar = 'MAKER' -- User Variable used in grandMA2 software
     							-- Keep as single string (no whitespace)

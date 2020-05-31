@@ -3,7 +3,7 @@
 -- =======================================================================================
 -- Plugin: RENAME.lua
 -- Programmer: Cooper Santillan
--- Last Modified: May 30, 2020 12:22am
+-- Last Modified: March 30, 2020 06:28pm
 -- =======================================================================================
 -- Description: Within the Maker+ library, RENAME is able to relabel a song to a different
 --				name. Using this plugin will still limit the characters that are not
@@ -30,10 +30,9 @@
 -- =======================================================================================
 -- ==== MAIN: RENAME =====================================================================
 -- =======================================================================================
+local caller = select(2,...):gsub("%d+$", "") -- label of the plugin
 local function RENAME()
-	local caller = "RENAME"
 	local user = localUser
-	local G_OBJ = gma.show.getobj
 
     local makerVar = 'MAKER' -- User Variable used in grandMA2 software
     							-- Keep as single string (no whitespace)

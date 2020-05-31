@@ -3,7 +3,7 @@
 -- =======================================================================================
 -- Plugin: REALPHA.lua
 -- Programmer: Cooper Santillan
--- Last Modified: March 14, 2020 01:01pm
+-- Last Modified: March 30, 2020 06:28pm
 -- =======================================================================================
 -- Description: Will prompt the user to reorganize the Maker+ Library so that it is in
 --				alphabetical order. User can hit 'CANCEL' or escape to skip certain area
@@ -30,9 +30,9 @@
 -- =======================================================================================
 -- ==== MAIN: REALPHA ====================================================================
 -- =======================================================================================
+local caller = select(2,...):gsub("%d+$", "") -- label of the plugin
 local function REALPHA()
 	-- copy settings from the SETUP Plugin
-	local caller = "REALPHA"
 	local user = localUser
 
 	if not(maker.test.seq(user, caller)) then return false; end

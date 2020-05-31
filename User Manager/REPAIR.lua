@@ -3,7 +3,7 @@
 -- =======================================================================================
 -- Plugin: REPAIR.lua
 -- Programmer: Cooper Santillan
--- Last Modified: March 14, 2020 01:01pm
+-- Last Modified: March 30, 2020 06:28pm
 -- =======================================================================================
 -- Description: This program will repair any missing macros from the sequence list.
 --				Assuming that your song sequence pool is continuous. Great to use if you
@@ -30,8 +30,8 @@
 -- =======================================================================================
 -- ==== MAIN: REPAIR =====================================================================
 -- =======================================================================================
+local caller = select(2,...):gsub("%d+$", "") -- label of the plugin
 local function REPAIR()
-	local caller = "REPAIR"
 	local user = localUser
 
 	if not(maker.test.seq(user, caller)) then return false; end
