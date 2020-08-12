@@ -3,7 +3,7 @@
 -- =======================================================================================
 -- Plugin: OBJ_MANAGE.lua
 -- Programmer: Cooper Santillan
--- Last Modified: May 30, 2020 12:22am
+-- Last Modified: June 02, 2020 11:45pm
 -- =======================================================================================
 -- Description: All functions used to maintain the Maker+ plugin suite.
 -- =======================================================================================
@@ -40,12 +40,14 @@
 function maker.create.plugin(number, name, plugin)
 	local usrVar = "MAKER"
 
+	--gma.cmd("BlindEdit On")
 	gma.cmd("Store Macro " ..number)
 	gma.cmd("Store Macro 1." ..number ..".1 thru Macro 1." ..number ..".3")
 	gma.cmd("Label Macro " ..number .." \"" ..maker.util.underVer(name, "Macro") .."\"")
 	gma.cmd("Assign Macro 1." ..number ..".1 /cmd=\"SetUserVar $" ..usrVar .." = " ..maker.util.underVer(name, "Sequence") .."\"")
 	gma.cmd("Assign Macro 1." ..number ..".2 /wait=0.1")
 	gma.cmd("Assign Macro 1." ..number ..".3 /cmd=\"Plugin " ..plugin .."\"")
+	--gma.cmd("BlindEdit Off")
 end
 -- ==== END OF maker.create.plugin =======================================================
 
@@ -117,6 +119,7 @@ end
 --		group		-- what group to use
 -- =======================================================================================
 function maker.create.sequence(number, name, group)
+	--gma.cmd("BlindEdit On")
 	maker.util.group(group)
 	gma.cmd("Store Sequence " ..number .." Cue 1")
 	gma.cmd("ClearAll")
@@ -126,6 +129,7 @@ function maker.create.sequence(number, name, group)
 	gma.cmd("Label Sequence " ..number .." Cue 1 \"S - " ..maker.util.underVer(name, "Macro"):gsub(" V%d+" , "") .."\"")
 	gma.cmd("Appearance Sequence " ..number .." Cue 1 /r=50.2 /g=36.9 /b=0")
 	gma.cmd("Assign Sequence " ..number .." Cue 1 /MIB=Early /Info=\"HL: %\"")
+	--gma.cmd("BlindEdit Off")
 end
 -- ==== END OF maker.create.sequence =====================================================
 
@@ -192,8 +196,11 @@ end
 --		name		-- label name for the effect
 -- =======================================================================================
 function maker.create.effect(number, name)
+	--gma.cmd("BlindEdit On")
+	gma.cmd("ClearAll")
 	gma.cmd("Store Effect " ..number .." /o")
 	gma.cmd("Label Effect " ..number .." \"" ..maker.util.underVer(name, "Macro") .."\"")
+	--gma.cmd("BlindEdit Off")
 end
 -- ==== END OF maker.create.effect =======================================================
 
@@ -259,8 +266,10 @@ end
 --		name		-- label name for the timecode
 -- =======================================================================================
 function maker.create.timecode(number, name)
+	--gma.cmd("BlindEdit On")
 	gma.cmd("Store Timecode " ..number)
 	gma.cmd("Label Timecode " ..number .." \"" ..maker.util.underVer(name, "Macro") .."\"")
+	--gma.cmd("BlindEdit Off")
 end
 -- ==== END OF maker.create.timecode =====================================================
 

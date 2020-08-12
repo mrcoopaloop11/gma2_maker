@@ -47,6 +47,7 @@ local function REALPHA()
 	-- prompt the user for what they would like to re-alphabetize!
 	for i=1, macroAmount do
 		if (maker.util.prompt(maker.manage("Pool", user, i), caller)) then
+			maker.last[i] = nil
 			maker.move.alpha(user, i, caller)
 		end
 	end

@@ -3,10 +3,10 @@
 -- =======================================================================================
 -- Plugin: ADDER.lua
 -- Programmer: Cooper Santillan
--- Last Modified: March 14, 2020 01:01pm
+-- Last Modified: May 31, 2020 11:59pm
 -- =======================================================================================
 -- Description: Able to copy one sequence into the user's selected executor's sequence.
---				This copy will be placed into the selected executor's sequence's next cue.
+--				This copy will be placed into the selected executor's sequence's last cue.
 -- =======================================================================================
 
 -- Which user is this for? (Refer to SETUP Plugin)
@@ -33,43 +33,32 @@
 local function ADDER()
 	-- variables needed from SETUP plugin
 	local user = localUser
-	local cpySeqADDER = user.song_seq
-	local localPoolSize = user.pool_size
-	local currPool
 	local caller = "ADDER"
+	local cpySeqADDER = maker.find.pool(user, "SONGS", caller)
+	if (cpySeqADDER == false) then
+		maker.util.error(nil, nil, caller)
+		return false
+	end
 
     local makerVar = 'MAKER' -- User Variable used in grandMA2 software
     							-- Keep as single string (no whitespace)
 
+	-- test sequence variables and pool size
 	if not(maker.test.seq(user, caller)) then return false end
 	if not(maker.test.pool(user, caller)) then return false end
 
+	-- make sure for every addon, it has BOTH name and first variables
 	local macroAmount = maker.test.count(user, caller)
 	if not(macroAmount) then
 		maker.util.error("You did not setup Maker+ completely!", nil, caller)
 		return false
 	end
 
-	local bContinue = true
-	local poolIndex
-	for i=1, macroAmount do
-		currPool = maker.manage("Pool", user, i)
-		if(currPool:upper() == me) then
-			bContinue = false
-			poolIndex = i
-			break
-		end
-	end
-
-	if not(bContinue) then
+	-- check if user SETUP the Adder settings
+	if (maker.find.pool(user, "ADDER", caller) == false) then
 		maker.util.error("Could not find self in Setup.", nil, caller)
 		return false
 	end
-
-	-- all local variables needed for function ADDER
-	-- shortcut for GMA show objects
-	local G_OBJ = gma.show.getobj
-	local G_PRO = gma.show.property
 
 	-- Information about your selected executor and what cue you are currently on
 	local CURRENTCUE = gma.show.getvar('SELECTEDEXECCUE')
@@ -106,7 +95,7 @@ local function ADDER()
 			maker.util.error(ESC_RED .."Plugin Error. UserVar \'" ..makerVar .."\' in the sequence library was not found.",
 							"Could not find " ..songVar .." in your song library!\n\n Check your sequence song library\n and see if it exists!",
 							caller)
-			maker.util.print(ESC_RED .."Library Starts: " ..ESC_GRN .."Sequence " ..ESC_WHT ..cpySeqMAKER)
+			maker.util.print(ESC_RED .."Library Starts: " ..ESC_GRN .."Sequence " ..ESC_WHT ..user.first[cpySeqADDER])
 			return -13;
 		end
 	end

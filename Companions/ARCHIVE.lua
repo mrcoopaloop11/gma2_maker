@@ -30,8 +30,8 @@
 -- =======================================================================================
 -- ==== MAIN: ARCHIVE ====================================================================
 -- =======================================================================================
+local caller = select(2,...):gsub("%d+$", "") -- label of the plugin
 local function ARCHIVE()
-	local caller = "ARCHIVE"
 	local user = localUser
 	local loccpySeq = user.archive_seq
 	local assetSeq = user.serv_content
@@ -102,10 +102,10 @@ local function ARCHIVE()
 
 	-- empty sequence found
 	-- prompt user of number chosen
-	gma.feedback(ESC_WHT .."ARCHIVE : " ..ESC_YEL .."========================================")
-	gma.feedback(ESC_WHT .."ARCHIVE : " ..ESC_YEL .."Service    Date: " ..ESC_WHT ..labelString)
-	gma.feedback(ESC_WHT .."ARCHIVE : " ..ESC_YEL .."Created Service: " ..ESC_GRN .."Sequence " ..ESC_WHT ..loccpySeq)
-	gma.feedback(ESC_WHT .."ARCHIVE : " ..ESC_YEL .."========================================")
+	gma.feedback(ESC_WHT ..caller .." : " ..ESC_YEL .."========================================")
+	gma.feedback(ESC_WHT ..caller .." : " ..ESC_YEL .."Service    Name: " ..ESC_WHT ..labelString)
+	gma.feedback(ESC_WHT ..caller .." : " ..ESC_YEL .."Created Service: " ..ESC_GRN .."Sequence " ..ESC_WHT ..loccpySeq)
+	gma.feedback(ESC_WHT ..caller .." : " ..ESC_YEL .."========================================")
 
 	gma.cmd("Assign Sequence " ..loccpySeq .." At Executor " ..gma.show.getvar('SELECTEDEXEC'))
 

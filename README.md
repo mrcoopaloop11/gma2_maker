@@ -12,7 +12,7 @@ Click this button and then proceed to click the *'Download ZIP'*. Unzip file.
 Transfer the unzipped folder to a USB stick. You can then transfer the USB to your GrandMA2 console.
 
 Once you have the USB connected to your console, from your GrandMA2 software, create a new basic windows: `System` -> `Plugins`.
-`Edit` an empty space for a new plugin. On the bottom of this popup GUI, click on the `import` button. Change your `Select Drive` to the USB drive with the Maker+ plugin suite. Go through each folder and find a XML files that you'd to import.
+`Edit` an empty space for a new plugin. On the bottom of this popup GUI, click on the `import` button. Change your `Select Drive` to the USB drive with the Maker+ plugin suite. Go through each folder and find a XML files that you'd like to import.
 
 > *LUA* files won't show on `import` GUI. *XML* files help import *LUA* files into the plugin pool.
 

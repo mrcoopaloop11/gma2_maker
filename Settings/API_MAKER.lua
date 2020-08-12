@@ -3,7 +3,7 @@
 -- =======================================================================================
 -- Plugin: API_MAKER.lua
 -- Programmer: Cooper Santillan
--- Last Modified: May 30, 2020 03:08pm
+-- Last Modified: June 02, 2020 11:45pm
 -- =======================================================================================
 -- Description: All functions used to maintain the Maker+ plugin suite.
 -- =======================================================================================
@@ -508,7 +508,7 @@ end
 --
 -- Inputs:
 --		user		-- which user in SETUP plugin to use
---		poolIndex	-- which ADDON to use (or SONGS)
+--		poolIndex	-- string: find index of sequence/addon
 --		caller		-- what plugin is using this function
 --
 -- Output:
@@ -519,7 +519,7 @@ function maker.find.pool(user, poolName, caller)
 
 	for poolIndex=1, macroAmount do
 		if (poolName:upper() == user.name[poolIndex]:upper()) then
-			return user.first[poolIndex];
+			return poolIndex;
 		end
 	end
 	return false;
@@ -726,12 +726,12 @@ function maker.find.strOrNum(user, sName, caller)
 			for i=2, macroAmount do
 				currPool = maker.manage("Pool", user, i)
 				addonIndex = maker.manage("Current", user, i, user.first[i])
-				while (addonIndex <= user.last[i]) do
+				while (addonIndex < user.last[i]) do
 				    if (G_OBJ.label(G_OBJ.handle(currPool .." " ..addonIndex)) == string.gsub(G_OBJ.label(G_OBJ.handle(mainPool .." " ..locations[1])) , "_" , " ")) then
 						-- its important that in all libraries, each object has a unique name
 				        locations[i] = addonIndex
 				    end
-				    addonIndex = maker.manage("Inc", user, i, addonIndex, 0)
+				    addonIndex = maker.manage("Inc", user, i, addonIndex, 1)
 				end
 			end
 
@@ -859,7 +859,7 @@ function maker.find.ver.count(user, poolIndex, sName, caller)
         poolHandle = G_OBJ.handle(currPool .." " ..countPoolNum)
     end
 
-    return arrayCounter, poolSongArray
+    return arrayCounter - 1, poolSongArray
 end
 -- ==== END OF maker.find.ver.count ======================================================
 
@@ -1071,7 +1071,6 @@ end
 -- Output: Nothing.
 -- =======================================================================================
 function maker.move.alpha(user, poolIndex, caller)
-    local G_OBJ = gma.show.getobj
     local currPool = maker.manage("Pool", user, poolIndex)
     local source = maker.manage("Current", user, poolIndex, user.first[poolIndex])
     local last = maker.find.last(user, poolIndex, caller)
@@ -1087,7 +1086,7 @@ function maker.move.alpha(user, poolIndex, caller)
 	destination = source
     poolHandle = G_OBJ.handle(currPool .." " ..countPoolNum)
     counter = 1
-	if (last <= countPoolNum) then return end
+	if (last < countPoolNum) then return end
 
 	-- copy down all labels from pool in continuous list on to an array
     while (countPoolNum <= last) do
@@ -1110,7 +1109,7 @@ function maker.move.alpha(user, poolIndex, caller)
                 if(destination > last) then
                     goto continue
                 end
-                destination = maker.manage("Inc", user, poolIndex, destination, 0)
+                destination = maker.manage("Inc", user, poolIndex, destination, 1)
             until (refString == G_OBJ.label(G_OBJ.handle(currPool.. " " ..destination)))
 
             maker.manage("Move", user, poolIndex, destination, source)

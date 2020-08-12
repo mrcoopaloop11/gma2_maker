@@ -3,7 +3,7 @@
 -- =======================================================================================
 -- Plugin: MAKER.lua
 -- Programmer: Cooper Santillan
--- Last Modified: March 14, 2020 01:01pm
+-- Last Modified: May 31, 2020 11:59pm
 -- =======================================================================================
 -- Description: Able to copy one sequence into the user's selected executor's sequence.
 --				This copy will be placed into the selected executor's sequence's next cue.
@@ -34,8 +34,8 @@ local function MAKER()
 	-- variables needed from SETUP plugin
 	local user = localUser
 	local caller = "MAKER"
-	local cpySeqMAKER = maker.find.pool(user, "Maker", caller)
-	if not(cpySeqMAKER) then
+	local cpySeqMAKER = maker.find.pool(user, "SONGS", caller)
+	if (cpySeqMAKER == false) then
 		maker.util.error(nil, nil, caller)
 		return false
 	end
@@ -43,14 +43,23 @@ local function MAKER()
     local makerVar = 'MAKER' -- User Variable used in grandMA2 software
     							-- Keep as single string (no whitespace)
 
-	if not(maker.test.seq(user, caller)) then return false; end
-	if not(maker.test.pool(user, caller)) then return false; end
--- test for a addon named maker that has a first variable
+	-- test sequence variables and pool size
+	if not(maker.test.seq(user, caller)) then return false end
+	if not(maker.test.pool(user, caller)) then return false end
 
-	-- all local variables needed for function ADDER
-	-- shortcut for GMA show objects
-	local G_OBJ = gma.show.getobj
-	local G_PRO = gma.show.property
+	-- make sure for every addon, it has BOTH name and first variables
+	local macroAmount = maker.test.count(user, caller)
+	if not(macroAmount) then
+		maker.util.error("You did not setup Maker+ completely!", nil, caller)
+		return false
+	end
+
+	-- check if user SETUP the Adder settings
+	if (maker.find.pool(user, "MAKER", caller) == false) then
+		maker.util.error("Could not find self in Setup.", nil, caller)
+		return false
+	end
+
 
 	-- Information about your selected executor and what cue you are currently on
 	local SelSeqHand = G_OBJ.parent(G_OBJ.handle("Cue 1"))
@@ -83,7 +92,7 @@ local function MAKER()
 	gma.echo(ESC_RED .."========================" ..ESC_WHT .."-INTENTIONAL-SYNTAX-ERROR-END-" ..ESC_RED .."==========================")
 	-- if there was no match, prompt user and exit plugin...
 	if (songDest == false) then
-		maker.util.error(ESC_RED .."UserVar \'" ..makerVar .."\' string was not found in sequence library... " ..ESC_WHT .."Library Starts: " ..ESC_GRN .."Sequence " ..cpySeqMAKER,
+		maker.util.error(ESC_RED .."UserVar \'" ..makerVar .."\' string was not found in sequence library... " ..ESC_WHT .."Library Starts: " ..ESC_GRN .."Sequence " ..user.first[cpySeqMAKER],
 						"Could not find " ..songVar .." in your song library \n\n Check your sequence song library \n and see if it exists!",
 						caller)
 		return false;
