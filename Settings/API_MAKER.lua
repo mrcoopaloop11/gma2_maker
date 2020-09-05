@@ -254,40 +254,33 @@ end
 
 
 -- ==== maker.util.group =================================================================
--- Description: Assign the cue mode for the first cue... If option does not match any mode
---				assume that user wants to default a group with the label of the option var
+-- Description: Places default values in  your programmer either from a desired group or
+--				everything except for a certain group. "-MINUS " keyword to pick all
+--				except certain group.
 --
 -- Inputs:
---		option		-- String || Could be cue mode option or label of group
+--		option		-- String || label/string of group
 --		caller		-- what plugin is using this function
 --
 -- Output: Nothing
 -- =======================================================================================
 function maker.util.group(option, caller)
-	if("Normal" == option) then
-		gma.cmd("Assign Cue 1 /mode=Normal")
-	elseif("Assert" == option) then
-		gma.cmd("Assign Cue 1 /mode=Assert")
-	elseif("X-Assert" == option) then
-		gma.cmd("Assign Cue 1 /mode=X-Assert")
-	elseif("Release" == option) then
-		gma.cmd("Assign Cue 1 /mode=Release")
-	elseif("Break" == option) then
-		gma.cmd("Assign Cue 1 /mode=Break")
-	elseif("X-Break" == option) then
-		gma.cmd("Assign Cue 1 /mode=X-Break")
+	local minusOption = ""
+	if (option:match("-MINUS ")) then
+		option = option:gsub("-MINUS ", "")
+		minusOption = "Fixture 1 Thru - "
+	end
+
+	if(nil ~= tonumber(option)) then
+		-- Option is a group number
+		gma.cmd("ClearAll")
+		gma.sleep(0.1)
+		gma.cmd(minusOption .."Group " ..option .." Default")
 	else
-		if(nil ~= tonumber(option)) then
-			-- Option is a group number
-			gma.cmd("ClearAll")
-			gma.sleep(0.1)
-			gma.cmd("Group " ..option .." Default")
-		else
-			-- Option is a label name for the group
-			gma.cmd("ClearAll")
-			gma.sleep(0.1)
-			gma.cmd("Group \"" ..option .."\" Default")
-		end
+		-- Option is a label name for the group
+		gma.cmd("ClearAll")
+		gma.sleep(0.1)
+		gma.cmd(minusOption .."Group \"" ..option .."\" Default")
 	end
 end
 -- ==== END OF maker.util.group ==========================================================
