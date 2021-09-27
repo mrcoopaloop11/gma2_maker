@@ -161,6 +161,8 @@ maker.util.group(option, caller)
 maker.util.date(offset, caller)
 maker.util.weekday(reqDofW, caller)
 maker.util.timeTravel(user, caller)
+maker.util.renumber()
+maker.util.cueNumbers()
 
 maker.test.count(user, caller)
 maker.test.pool(user, caller)
