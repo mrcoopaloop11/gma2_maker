@@ -44,7 +44,7 @@ local function REPAIR()
 	end
 
 	for i=2, macroAmount do
-		if(maker.util.prompt(maker.manage("Pool", user, i), "Realphabetize")) then
+		if(maker.util.prompt(maker.manage("Pool", user, i), "Repair Maker+ Library")) then
 			maker.repair(user, i, caller)
 		end
 	end
