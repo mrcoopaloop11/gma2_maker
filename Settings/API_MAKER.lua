@@ -394,10 +394,11 @@ end
 -- Description: Renumbers the selected executors sequence cues' from current value into
 --				its index value. Only works if there is a "Cue 1" in your sequence.
 --
--- Input: None
+-- Input:
+--		caller		-- what plugin is using this function
 -- Output: None
 -- =======================================================================================
-function maker.util.renumber()
+function maker.util.renumber(caller)
 	local changed = 1 --any number other than 0
 	local lengthOfSeq = G_OBJ.amount(G_OBJ.parent(G_OBJ.handle("Cue 1"))) - 1
 	local currCue = {}
@@ -448,10 +449,11 @@ end
 --				Be sure to update this table for your self. I am using this to reduce
 --				api calls to grandma2 software. Will not work if their is no "Cue 1".
 --
--- Inputs: None
+-- Inputs: 
+--		caller		-- what plugin is using this function
 -- Output: vector: <current cue number, index value for cue>
 -- =======================================================================================
-function maker.util.cueNumbers()
+function maker.util.cueNumbers(caller)
 	local matrix = {}
 	local a, b
 	local SelSeqHand = G_OBJ.parent(G_OBJ.handle("Cue 1"))
