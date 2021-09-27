@@ -3,7 +3,7 @@
 -- =======================================================================================
 -- Plugin: ADDER.lua
 -- Programmer: Cooper Santillan
--- Last Modified: May 31, 2020 11:59pm
+-- Last Modified: September 27, 2020 02:32pm
 -- =======================================================================================
 -- Description: Able to copy one sequence into the user's selected executor's sequence.
 --				This copy will be placed into the selected executor's sequence's last cue.
@@ -130,6 +130,8 @@ local function ADDER()
 		-- delete the user variable makerVar (in case the plugin accidentally is called twice)
 		gma.user.setvar(makerVar , nil)
 	end
+
+	maker.util.renumber()
 end
 -- =======================================================================================
 -- ==== END OF ADDER =====================================================================

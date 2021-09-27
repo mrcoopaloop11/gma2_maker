@@ -3,7 +3,7 @@
 -- =======================================================================================
 -- Plugin: ALT_ADDER.lua
 -- Programmer: Cooper Santillan
--- Last Modified: March 14, 2020 01:01pm
+-- Last Modified: September 27, 2020 02:32pm
 -- =======================================================================================
 -- Description: References from the SETUP plugin a 'service content' sequence where
 --				the user stores all cue essentials (Walk In, Video, Host, etc...).
@@ -130,6 +130,8 @@ local function ALT_ADDER()
 		gma.cmd("Copy " ..servSeqName .." Cue " ..servCueNum .." At " ..SelSeqName .." Cue " ..NEXTCUE .." /o")
 		gma.user.setvar(makerVar , nil)
 	end
+
+	maker.util.renumber()
 
 end
 -- =======================================================================================
