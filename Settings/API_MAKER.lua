@@ -3,7 +3,7 @@
 -- =======================================================================================
 -- Plugin: API_MAKER.lua
 -- Programmer: Cooper Santillan
--- Last Modified: June 02, 2020 11:45pm
+-- Last Modified: September 27, 2020 02:32pm
 -- =======================================================================================
 -- Description: All functions used to maintain the Maker+ plugin suite.
 -- =======================================================================================
@@ -387,6 +387,87 @@ function maker.util.timeTravel(user, caller)
 	return string.format("%02d-%02d-%02d" , newMonth , newDay , numYear)
 end
 -- ==== END OF maker.util.timeTravel =====================================================
+
+
+
+-- ==== maker.util.renumber ==============================================================
+-- Description: Renumbers the selected executors sequence cues' from current value into
+--				its index value. Only works if there is a "Cue 1" in your sequence.
+--
+-- Input: None
+-- Output: None
+-- =======================================================================================
+function maker.util.renumber()
+	local changed = 1 --any number other than 0
+	local lengthOfSeq = G_OBJ.amount(G_OBJ.parent(G_OBJ.handle("Cue 1"))) - 1
+	local currCue = {}
+	local nextCue = {}
+
+	-- you could put in loop to ensure cues are being updated
+	local seqTable = maker.util.cueNumbers()
+
+	-- loop until their are no changes needed when looking at list
+	while(changed ~= 0) do
+		changed = 0
+		for i = 1, lengthOfSeq do
+			currCue = seqTable[i]
+			if(seqTable[i + 1] ~= nil) then
+				nextCue.current = seqTable[i + 1].current
+				nextCue.future = seqTable[i + 1].future
+			else
+				-- for the last cue in the sequence
+				nextCue.current = nil
+				nextCue.future = nil
+			end
+
+			if(currCue.current == currCue.future) then
+				-- nothing
+			elseif(currCue.current < currCue.future) then
+				-- move cue forward
+				if((nextCue.future == nil) or (currCue.future < nextCue.current)) then
+					-- if you don't jump the next cue, make the move
+					gma.cmd("Move Cue " ..currCue.current .." At " ..currCue.future)
+					currCue.current = currCue.future
+				end
+				changed = changed + 1
+			elseif(currCue.current > currCue.future) then
+				-- move cue backwards
+				gma.cmd("Move Cue " ..currCue.current .." At " ..currCue.future)
+				currCue.current = currCue.future
+				changed = changed + 1
+			end
+		end
+	end
+end
+-- ==== END OF maker.util.renumber =======================================================
+
+
+
+-- ==== maker.util.cueNumbers ============================================================
+-- Description: Returns the cue number and its index value at a static point of time.
+--				Be sure to update this table for your self. I am using this to reduce
+--				api calls to grandma2 software. Will not work if their is no "Cue 1".
+--
+-- Inputs: None
+-- Output: vector: <current cue number, index value for cue>
+-- =======================================================================================
+function maker.util.cueNumbers()
+	local matrix = {}
+	local a, b
+	local SelSeqHand = G_OBJ.parent(G_OBJ.handle("Cue 1"))
+	local SelSeqAmou = G_OBJ.amount(SelSeqHand) - 1
+
+	-- find the current value of a cue and the index
+	for i=1, SelSeqAmou do
+		a = tonumber(G_OBJ.number(G_OBJ.child(SelSeqHand , i)))
+		b = G_OBJ.index(G_OBJ.child(SelSeqHand , i))
+		matrix[i] = {current = a, future = b}
+	end
+
+	-- return the matrix
+	return matrix
+end
+-- ==== END OF maker.util.cueNumbers =====================================================
 
 
 
