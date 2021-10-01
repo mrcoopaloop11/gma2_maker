@@ -76,7 +76,7 @@ end
 
 function maker.debugCaller()
 	-- cyle through users and determine which one is to be used
-	for k in pairs(localUser) do
+	for k in pairs(user) do
 		maker.util.print("User: "..k, caller)
 		for j in pairs(maker.task) do
 			maker.util.print("    Task: " ..j, caller)
