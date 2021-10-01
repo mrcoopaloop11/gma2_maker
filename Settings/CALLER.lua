@@ -59,11 +59,11 @@ function maker.caller()
 	local singleTask = maker.task[taskVar]
 
 	if((singleUser == nil) and (singleTask == nil)) then
-		gma.gui.msgbox("ERROR in CALLER Plugin", "The user and program you tried using were not found.\n You set: \nUser: " ..userVar .."\nTask: " ..taskVar .."")
+		gma.gui.msgbox("ERROR in CALLER Plugin", "The user and program you tried using were not found.\n\n You set: \nUser: " ..userVar .."\nTask: " ..taskVar .."")
 	elseif(singleUser == nil) then
-		gma.gui.msgbox("ERROR in CALLER Plugin", "The user you tried using were not found.\n You set: \nUser: " ..userVar)
+		gma.gui.msgbox("ERROR in CALLER Plugin", "The user you tried using were not found.\n\n You set: \nUser: " ..userVar)
 	elseif(singleTask == nil) then
-		gma.gui.msgbox("ERROR in CALLER Plugin", "The program you tried using were not found.\n You set: \nTask: " ..taskVar)
+		gma.gui.msgbox("ERROR in CALLER Plugin", "The program you tried using were not found.\n\n You set: \nTask: " ..taskVar)
 	else
 		singleUser.self = userVar
 		singleTask(singleUser) -- exits caller and performs task with requested User
