@@ -34,9 +34,9 @@ local caller = select(2,...):gsub("%d+$", "") -- label of the plugin
 function maker.caller()
 	local localUser = setupUsers
 	-- which user needs this plugin
-	local UserVar = gma.user.getvar('MAKER_USER')
+	local userVar = gma.user.getvar('MAKER_USER')
 	-- check if it exists
-	if(UserVar == nil) then
+	if(userVar == nil) then
 		maker.util.error("UserVar \'MAKER_USER\' was not found.",
 						nil,
 						caller)
@@ -53,35 +53,36 @@ function maker.caller()
 		return false;
 	end
 
-	local uflag = true	-- user flag, true if no user was found in match
-	local tflag = true	-- task flag, true if no task was found in match
 
-	-- cyle through users and determine which one is to be used
-	for k in pairs(localUser) do
-		if (k:match(UserVar) then
-			uflag = false
-			for j in pairs(maker.task) do
-				if(j:match(taskVar) then
-					localUser[k].self = k
-					maker.task[j](localUser[k])
-					tflag = false
-				end
-			end
-		end
-	end
+	-- check if the user input user and task correctly (if it exists)
+	local singleUser = localUser[userVar]
+	local singleTask = maker.task[taskVar]
 
-	-- prompt the user if there was an error
-	if(uflag and tflag) then
+	if((singleUser == nil) and (singleTask == nil)) then
 		gma.gui.msgbox("ERROR in CALLER Plugin", "The user and program you tried using were not found.\n You set " ..UserVar .." as a user and " ..taskVar .." as the program to use.")
-	elseif(uflag) then
+	elseif(singleUser == nil) then
 		gma.gui.msgbox("ERROR in CALLER Plugin", "The user you tried using were not found.\n You tried using " ..UserVar .." as a user but it does not exist.")
-	elseif(tflag) then
+	elseif(singleTask == nil) then
 		gma.gui.msgbox("ERROR in CALLER Plugin", "The program you tried using were not found.\n You tried using the " ..taskVar .." program but it does not exist.")
+	else
+		singleUser.self = userVar
+		singleTask(singleUser) -- exits caller and performs task with requested User
 	end
 
 end
 -- =======================================================================================
 -- ==== END OF CALLER ====================================================================
 -- =======================================================================================
+
+function maker.debugCaller()
+	-- cyle through users and determine which one is to be used
+	for k in pairs(localUser) do
+		maker.util.print("User: "..k, caller)
+			for j in pairs(maker.task) do
+				maker.util.print("    Task: " ..j, caller)
+			end
+		end
+	end
+end
 
 return maker.caller, deleteVars;
