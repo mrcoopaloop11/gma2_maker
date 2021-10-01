@@ -1,16 +1,14 @@
 -- =======================================================================================
--- WARNING: I am not responsible for any content loss or crashes while using this plugin.
--- =======================================================================================
 -- Plugin: ADDER.lua
 -- Programmer: Cooper Santillan
--- Last Modified: September 27, 2020 02:32pm
+-- Last Modified: September 30, 2021 11:15pm
 -- =======================================================================================
 -- Description: Able to copy one sequence into the user's selected executor's sequence.
 --				This copy will be placed into the selected executor's sequence's last cue.
 -- =======================================================================================
 
--- Which user is this for? (Refer to SETUP Plugin)
-	local localUser = main_campus
+
+
 
 
 
@@ -30,17 +28,17 @@
 -- =======================================================================================
 -- ==== MAIN: ADDER ======================================================================
 -- =======================================================================================
-local function ADDER()
+local caller = select(2,...):gsub("%d+$", "") -- label of the plugin
+function maker.task.adder(localUser)
 	-- variables needed from SETUP plugin
 	local user = localUser
-	local caller = "ADDER"
 	local cpySeqADDER = maker.find.pool(user, "SONGS", caller)
 	if (cpySeqADDER == false) then
 		maker.util.error(nil, nil, caller)
 		return false
 	end
 
-    local makerVar = 'MAKER' -- User Variable used in grandMA2 software
+    local makerVar = 'MAKER_SONG' -- User Variable used in grandMA2 software
     							-- Keep as single string (no whitespace)
 
 	-- test sequence variables and pool size
@@ -131,10 +129,10 @@ local function ADDER()
 		gma.user.setvar(makerVar , nil)
 	end
 
-	maker.util.renumber()
+	if(gma.gui.confirm("Renumber this Sequence" , "Would you like to renumber all cues in this sequence to its index value?")) then
+		maker.util.renumber(caller)
+	end
 end
 -- =======================================================================================
 -- ==== END OF ADDER =====================================================================
 -- =======================================================================================
-
-return ADDER;

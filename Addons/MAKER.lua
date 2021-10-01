@@ -1,16 +1,14 @@
 -- =======================================================================================
--- WARNING: I am not responsible for any content loss or crashes while using this plugin.
--- =======================================================================================
 -- Plugin: MAKER.lua
 -- Programmer: Cooper Santillan
--- Last Modified: May 31, 2020 11:59pm
+-- Last Modified: September 30, 2021 11:15pm
 -- =======================================================================================
 -- Description: Able to copy one sequence into the user's selected executor's sequence.
 --				This copy will be placed into the selected executor's sequence's next cue.
 -- =======================================================================================
 
--- Which user is this for? (Refer to SETUP Plugin)
-	local localUser = main_campus
+
+
 
 
 
@@ -30,17 +28,17 @@
 -- =======================================================================================
 -- ==== MAIN: MAKER ======================================================================
 -- =======================================================================================
-local function MAKER()
+local caller = select(2,...):gsub("%d+$", "") -- label of the plugin
+function maker.task.maker(localUser)
 	-- variables needed from SETUP plugin
 	local user = localUser
-	local caller = "MAKER"
 	local cpySeqMAKER = maker.find.pool(user, "SONGS", caller)
 	if (cpySeqMAKER == false) then
 		maker.util.error(nil, nil, caller)
 		return false
 	end
 
-    local makerVar = 'MAKER' -- User Variable used in grandMA2 software
+    local makerVar = 'MAKER_SONG' -- User Variable used in grandMA2 software
     							-- Keep as single string (no whitespace)
 
 	-- test sequence variables and pool size
@@ -114,5 +112,3 @@ end
 -- =======================================================================================
 -- ==== END OF MAKER =====================================================================
 -- =======================================================================================
-
-return MAKER;

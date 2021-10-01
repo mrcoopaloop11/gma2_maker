@@ -1,9 +1,7 @@
 -- =======================================================================================
--- WARNING: I am not responsible for any content loss or crashes while using this plugin.
--- =======================================================================================
 -- Plugin: OBJ_MANAGE.lua
 -- Programmer: Cooper Santillan
--- Last Modified: June 02, 2020 11:45pm
+-- Last Modified: September 30, 2021 11:15pm
 -- =======================================================================================
 -- Description: All functions used to maintain the Maker+ plugin suite.
 -- =======================================================================================
@@ -37,16 +35,20 @@
 --		name		-- label name for the macro
 --		plugin		-- what plugin to use
 -- =======================================================================================
-function maker.create.plugin(number, name, plugin)
-	local usrVar = "MAKER"
+function maker.create.plugin(number, name, plugin, userName)
+	local userVar = "MAKER_TASK"
+	local taskVar = "MAKER_TASK"
+	local makerVar = "MAKER_SONG"
 
 	--gma.cmd("BlindEdit On")
 	gma.cmd("Store Macro " ..number)
-	gma.cmd("Store Macro 1." ..number ..".1 thru Macro 1." ..number ..".3")
+	gma.cmd("Store Macro 1." ..number ..".1 thru Macro 1." ..number ..".5")
 	gma.cmd("Label Macro " ..number .." \"" ..maker.util.underVer(name, "Macro") .."\"")
-	gma.cmd("Assign Macro 1." ..number ..".1 /cmd=\"SetUserVar $" ..usrVar .." = " ..maker.util.underVer(name, "Sequence") .."\"")
-	gma.cmd("Assign Macro 1." ..number ..".2 /wait=0.1")
-	gma.cmd("Assign Macro 1." ..number ..".3 /cmd=\"Plugin " ..plugin .."\"")
+	gma.cmd("Assign Macro 1." ..number ..".1 /cmd=\"SetUserVar $" ..userVar .." = " ..userName)
+	gma.cmd("Assign Macro 1." ..number ..".2 /cmd=\"SetUserVar $" ..taskVar .." = " ..plugin)
+	gma.cmd("Assign Macro 1." ..number ..".3 /cmd=\"SetUserVar $" ..makerVar .." = " ..maker.util.underVer(name, "Sequence") .."\"")
+	gma.cmd("Assign Macro 1." ..number ..".4 /wait=0.1")
+	gma.cmd("Assign Macro 1." ..number ..".5 /cmd=\"Plugin CALLER\"")
 	--gma.cmd("BlindEdit Off")
 end
 -- ==== END OF maker.create.plugin =======================================================
@@ -59,13 +61,17 @@ end
 --		name		-- label name for the macro
 --		plugin		-- what plugin to use
 -- =======================================================================================
-function maker.edit.plugin(number, name, plugin)
-	local usrVar = "MAKER"
+function maker.edit.plugin(number, name, plugin, userName)
+	local userVar = "MAKER_TASK"
+	local taskVar = "MAKER_TASK"
+	local makerVar = "MAKER_SONG"
 
 	gma.cmd("Label Macro " ..number .." \"" ..maker.util.underVer(name, "Macro") .."\"")
-	gma.cmd("Assign Macro 1." ..number ..".1 /cmd=\"SetUserVar $" ..usrVar .." = " ..maker.util.underVer(name, "Sequence") .."\"")
-	gma.cmd("Assign Macro 1." ..number ..".2 /wait=0.1")
-	gma.cmd("Assign Macro 1." ..number ..".3 /cmd=\"Plugin " ..plugin .."\"")
+	gma.cmd("Assign Macro 1." ..number ..".1 /cmd=\"SetUserVar $" ..userVar .." = " ..userName)
+	gma.cmd("Assign Macro 1." ..number ..".2 /cmd=\"SetUserVar $" ..taskVar .." = " ..plugin)
+	gma.cmd("Assign Macro 1." ..number ..".3 /cmd=\"SetUserVar $" ..makerVar .." = " ..maker.util.underVer(name, "Sequence") .."\"")
+	gma.cmd("Assign Macro 1." ..number ..".4 /wait=0.1")
+	gma.cmd("Assign Macro 1." ..number ..".5 /cmd=\"Plugin CALLER\"")
 end
 -- ==== END OF maker.edit.plugin =========================================================
 
@@ -362,8 +368,8 @@ function maker.manage(option, user, number, arg1, arg2)
 		elseif(option:upper() == "CURRENT") then
 			if (0 == math.fmod(arg1, user.pool_size)) then return arg1 + 1
 			else return arg1 end
-		elseif(option:upper() == "CREATE") then maker.create.plugin(arg2, arg1, user.name[number])
-		elseif(option:upper() == "EDIT"  ) then maker.edit.plugin(arg2, arg1, user.name[number])
+		elseif(option:upper() == "CREATE") then maker.create.plugin(arg2, arg1, user.name[number], user.self)
+		elseif(option:upper() == "EDIT"  ) then maker.edit.plugin(arg2, arg1, user.name[number], user.self)
 		elseif(option:upper() == "DELETE") then maker.delete.plugin(arg1)
 		elseif(option:upper() == "COPY"  ) then maker.copy.plugin(arg1, arg2)
 		elseif(option:upper() == "MOVE"  ) then maker.move.plugin(arg1, arg2)
@@ -383,8 +389,8 @@ function maker.manage(option, user, number, arg1, arg2)
 		elseif(option:upper() == "CURRENT") then
 			if (0 == math.fmod(arg1, user.pool_size)) then return arg1 + 1
 			else return arg1 end
-		elseif(option:upper() == "CREATE") then maker.create.plugin(arg2, arg1, user.name[number])
-		elseif(option:upper() == "EDIT"  ) then maker.edit.plugin(arg2, arg1, user.name[number])
+		elseif(option:upper() == "CREATE") then maker.create.plugin(arg2, arg1, user.name[number], user.self)
+		elseif(option:upper() == "EDIT"  ) then maker.edit.plugin(arg2, arg1, user.name[number], user.self)
 		elseif(option:upper() == "DELETE") then maker.delete.plugin(arg1)
 		elseif(option:upper() == "COPY"  ) then maker.copy.plugin(arg1, arg2)
 		elseif(option:upper() == "MOVE"  ) then maker.move.plugin(arg1, arg2)

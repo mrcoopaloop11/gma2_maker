@@ -1,9 +1,7 @@
 -- =======================================================================================
--- WARNING: I am not responsible for any content loss or crashes while using this plugin.
--- =======================================================================================
 -- Plugin: ALT_MAKER.lua
 -- Programmer: Cooper Santillan
--- Last Modified: March 14, 2020 01:01pm
+-- Last Modified: September 30, 2021 11:15pm
 -- =======================================================================================
 -- Description: References from the SETUP plugin a 'service content' sequence where
 --				the user stores all cue essentials (Walk In, Video, Host, etc...).
@@ -13,8 +11,8 @@
 --				the number of the cue.
 -- =======================================================================================
 
--- Which user is this for? (Refer to SETUP Plugin)
-	local localUser = main_campus
+
+
 
 
 
@@ -30,11 +28,11 @@
 -- =======================================================================================
 -- ==== MAIN: ALT_MAKER ==================================================================
 -- =======================================================================================
-local function ALT_MAKER()
-	local caller = "ALT_MAKER"
+local caller = select(2,...):gsub("%d+$", "") -- label of the plugin
+function maker.task.altMaker(localUser)
 	local altMAKERcpy = localUser.serv_content -- updating the global variable
 
-    local makerVar = 'MAKER' -- User Variable used in grandMA2 software
+    local makerVar = 'MAKER_SONG' -- User Variable used in grandMA2 software
     							-- Keep as single string (no whitespace)
 
 
@@ -120,5 +118,3 @@ end
 -- =======================================================================================
 -- ==== END OF ALT_MAKER =================================================================
 -- =======================================================================================
-
-return ALT_MAKER;

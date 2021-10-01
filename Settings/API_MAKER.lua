@@ -1,9 +1,7 @@
 -- =======================================================================================
--- WARNING: I am not responsible for any content loss or crashes while using this plugin.
--- =======================================================================================
 -- Plugin: API_MAKER.lua
 -- Programmer: Cooper Santillan
--- Last Modified: September 27, 2020 02:32pm
+-- Last Modified: September 30, 2021 11:15pm
 -- =======================================================================================
 -- Description: All functions used to maintain the Maker+ plugin suite.
 -- =======================================================================================
@@ -449,7 +447,7 @@ end
 --				Be sure to update this table for your self. I am using this to reduce
 --				api calls to grandma2 software. Will not work if their is no "Cue 1".
 --
--- Inputs: 
+-- Inputs:
 --		caller		-- what plugin is using this function
 -- Output: vector: <current cue number, index value for cue>
 -- =======================================================================================
@@ -1218,7 +1216,7 @@ function maker.request(user, poolIndex, seqArray, caller)
 	local trash, currPool
 	trash, currPool = maker.manage("Pool", user, poolIndex)
     local boolContinue = true
-	local makerVar = "MAKER"
+	local makerVar = "MAKER_SONG"
 
     if (1 == #seqArray) then
         versionIndex = 1

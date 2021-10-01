@@ -1,9 +1,7 @@
 -- =======================================================================================
--- WARNING: I am not responsible for any content loss or crashes while using this plugin.
--- =======================================================================================
 -- Plugin: ALT_ADDER.lua
 -- Programmer: Cooper Santillan
--- Last Modified: September 27, 2020 02:32pm
+-- Last Modified: September 30, 2021 11:15pm
 -- =======================================================================================
 -- Description: References from the SETUP plugin a 'service content' sequence where
 --				the user stores all cue essentials (Walk In, Video, Host, etc...).
@@ -13,8 +11,8 @@
 --				the number of the cue.
 -- =======================================================================================
 
--- Which user is this for? (Refer to SETUP Plugin)
-	local localUser = main_campus
+
+
 
 
 
@@ -30,11 +28,11 @@
 -- =======================================================================================
 -- ==== MAIN: ALT_ADDER ==================================================================
 -- =======================================================================================
-local function ALT_ADDER()
-	local caller = "ALT_ADDER"
+local caller = select(2,...):gsub("%d+$", "") -- label of the plugin
+function maker.task.altAdder(localUser)
 	local altADDERcpy = localUser.serv_content -- updating the global variable
 
-    local makerVar = 'MAKER' -- User Variable used in grandMA2 software
+    local makerVar = 'MAKER_SONG' -- User Variable used in grandMA2 software
     							-- Keep as single string (no whitespace)
 
 	-- shortcut for GMA show objects
@@ -131,11 +129,11 @@ local function ALT_ADDER()
 		gma.user.setvar(makerVar , nil)
 	end
 
-	maker.util.renumber()
+	if(gma.gui.confirm("Renumber this Sequence" , "Would you like to renumber all cues in this sequence to its index value?")) then
+		maker.util.renumber(caller)
+	end
 
 end
 -- =======================================================================================
 -- ==== END OF ALT_ADDER =================================================================
 -- =======================================================================================
-
-return ALT_ADDER;

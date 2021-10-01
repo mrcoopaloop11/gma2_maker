@@ -3,7 +3,7 @@
 -- =======================================================================================
 -- Plugin: ARCHIVE.lua
 -- Programmer: Cooper Santillan
--- Last Modified: March 14, 2020 01:01pm
+-- Last Modified: September 30, 2021 11:15pm
 -- =======================================================================================
 -- Description: Intended to find the next available empty sequence starting at request
 --				number. Assumes you work at church and host services on Sunday. Please
@@ -15,8 +15,8 @@
 --				of archive.
 -- =======================================================================================
 
--- Which user is this for? (Refer to SETUP Plugin)
-	local localUser = main_campus
+
+
 
 
 
@@ -31,16 +31,15 @@
 -- ==== MAIN: ARCHIVE ====================================================================
 -- =======================================================================================
 local caller = select(2,...):gsub("%d+$", "") -- label of the plugin
-local function ARCHIVE()
-	local user = localUser
-	local loccpySeq = user.archive_seq
-	local assetSeq = user.serv_content
-	local assetCue = user.first_cue
+local function maker.task.archive(localUser)
+	local loccpySeq = localUser.archive_seq
+	local assetSeq = localUser.serv_content
+	local assetCue = localUser.first_cue
 
-    local makerVar = 'MAKER' -- User Variable used in grandMA2 software
+    local makerVar = 'MAKER_SONG' -- User Variable used in grandMA2 software
     							-- Keep as single string (no whitespace)
 
-	if not(maker.test.archive(user, caller)) then return false; end
+	if not(maker.test.archive(localUser, caller)) then return false; end
 
 	local G_OBJ = gma.show.getobj
 	local startingHandle = G_OBJ.handle("Sequence " ..loccpySeq)
@@ -54,7 +53,7 @@ local function ARCHIVE()
 	end
 	gma.echo(ESC_RED .."========================" ..ESC_WHT .."-INTENTIONAL-SYNTAX-ERROR-END-" ..ESC_RED .."==========================")
 
-	local labelString = maker.util.timeTravel(user, caller)
+	local labelString = maker.util.timeTravel(localUser, caller)
 	if (labelString == false) then return false end
 
 	local boolContinue

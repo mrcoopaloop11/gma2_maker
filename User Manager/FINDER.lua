@@ -1,9 +1,7 @@
 -- =======================================================================================
--- WARNING: I am not responsible for any content loss or crashes while using this plugin.
--- =======================================================================================
 -- Plugin: FINDER.lua
 -- Programmer: Cooper Santillan
--- Last Modified: March 30, 2020 06:28pm
+-- Last Modified: September 30, 2021 11:15pm
 -- =======================================================================================
 -- Description: User can type the song they are looking for in a continuous list of
 --              macros. Starting from the first song, the range of the search will end at
@@ -13,8 +11,8 @@
 --              of the song, can be part of it. Plugin will flash macro match three times.
 -- =======================================================================================
 
--- Which user is this for? (Refer to SETUP Plugin)
-	local localUser = main_campus
+
+
 
 
 
@@ -31,11 +29,8 @@
 -- ==== MAIN: FINDER =====================================================================
 -- =======================================================================================
 local caller = select(2,...):gsub("%d+$", "") -- label of the plugin
-local function FINDER()
+function maker.task.finder(localUser)
 	local user = localUser
-
-	local makerVar = 'MAKER' -- User Variable used in grandMA2 software
-							-- Keep as single string (no whitespace)
 
 	if not(maker.test.seq(user, caller)) then return false; end
 	if not(maker.test.pool(user, caller)) then return false; end
@@ -105,5 +100,3 @@ end
 -- =======================================================================================
 -- ==== END OF FINDER ====================================================================
 -- =======================================================================================
-
-return FINDER;

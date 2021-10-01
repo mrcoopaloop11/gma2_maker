@@ -1,9 +1,7 @@
 -- =======================================================================================
--- WARNING: I am not responsible for any content loss or crashes while using this plugin.
--- =======================================================================================
 -- Plugin: REVISE.lua
 -- Programmer: Cooper Santillan
--- Last Modified: March 30, 2020 06:28pm
+-- Last Modified: September 30, 2021 11:15pm
 -- =======================================================================================
 -- Description: Prompts the user for either the label or sequence number of a requested
 --				song and assigns the song on to the selected executor. Additionally will
@@ -11,8 +9,8 @@
 --				assign song sequence until the problem is resolved.
 -- =======================================================================================
 
--- Which user is this for? (Refer to SETUP Plugin)
-	local localUser = main_campus
+
+
 
 
 
@@ -31,7 +29,7 @@
 -- ==== MAIN: REVISE =====================================================================
 -- =======================================================================================
 local caller = select(2,...):gsub("%d+$", "") -- label of the plugin
-local function REVISE()
+function maker.task.revise(localUser)
 	local user = localUser
 
 	if not(maker.test.seq(user, caller)) then return false; end
@@ -97,5 +95,3 @@ end
 -- =======================================================================================
 -- ==== END OF REVISE ====================================================================
 -- =======================================================================================
-
-return REVISE;

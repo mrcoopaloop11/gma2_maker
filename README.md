@@ -148,6 +148,14 @@ Make sure that this set of plugins are **BEFORE** all other plugins of the Maker
   - Uses only the second column of your Maker+ view (You choose column size!)
   - Every pool number is being used
 
+### *CALLER Plugin*
+- The interface from GMA2 software to Maker+ suite
+- Need three variables filled out
+	- `MAKER_USER` variable is for which Maker+ user you want to use
+	- `MAKER_TASK` variable is to pick which Maker+ program you want to use
+	- `MAKER_SONG` variable for what song you want to use (some times for more options)
+- Import this plugin file after all other plugins (should be the last in the list of plugins)
+
 ### *API_MAKER Plugin*
 ```lua
 maker.util.print(message, caller)

@@ -1,9 +1,7 @@
 -- =======================================================================================
--- WARNING: I am not responsible for any content loss or crashes while using this plugin.
--- =======================================================================================
 -- Plugin: BUILD.lua
 -- Programmer: Cooper Santillan
--- Last Modified: March 30, 2020 06:28pm
+-- Last Modified: September 30, 2021 11:15pm
 -- =======================================================================================
 -- Input for plugin:
 -- 			1. Group with all programmable fixtures (Called "All")
@@ -34,8 +32,8 @@
 --		   come in handy for when you copy the song into your master service sequence.
 -- =======================================================================================
 
--- Which user is this for? (Refer to SETUP Plugin)
-	local localUser = main_campus
+
+
 
 
 
@@ -51,13 +49,10 @@
 -- ==== MAIN: BUILD ======================================================================
 -- =======================================================================================
 local caller = select(2,...):gsub("%d+$", "") -- label of the plugin
-local function BUILD()
+function maker.task.build(localUser)
 	-- store global variables (on the very top of plugin editor) to local variables
 	-- this ensures every run will update a new starting pool number
 	local user = localUser
-
-    local makerVar = 'MAKER' -- User Variable used in grandMA2 software
-    							-- Keep as single string (no whitespace)
 
 	if not(maker.test.seq(user, caller)) then return false; end
 	if not(maker.test.pool(user, caller)) then return false; end
@@ -142,5 +137,3 @@ end
 -- =======================================================================================
 -- ==== END OF BUILD =====================================================================
 -- =======================================================================================
-
-return BUILD;

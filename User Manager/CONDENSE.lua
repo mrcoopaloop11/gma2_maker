@@ -1,9 +1,7 @@
 -- =======================================================================================
--- WARNING: I am not responsible for any content loss or crashes while using this plugin.
--- =======================================================================================
 -- Plugin: CONDENSE.lua
 -- Programmer: Cooper Santillan
--- Last Modified: March 30, 2020 06:28pm
+-- Last Modified: September 30, 2021 11:15pm
 -- =======================================================================================
 -- Description: Able to remove all gaps that would typically prevent a library to stop
 --				see potentially other sequence/addon canditates. Prompts user for each
@@ -11,8 +9,8 @@
 --				gap will assume library is finished.
 -- =======================================================================================
 
--- Which user is this for? (Refer to SETUP Plugin)
-	local localUser = main_campus
+
+
 
 
 
@@ -33,7 +31,7 @@
 -- ==== MAIN: CONDENSE ===================================================================
 -- =======================================================================================
 local caller = select(2,...):gsub("%d+$", "") -- label of the plugin
-local function CONDENSE()
+function maker.task.condense(localUser)
 	local user = localUser
 	local currPool
 
@@ -58,5 +56,3 @@ local function CONDENSE()
 		::SKIP_INST::
 	end
 end
-
-return CONDENSE;

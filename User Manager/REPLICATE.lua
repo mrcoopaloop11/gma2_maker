@@ -1,9 +1,7 @@
 -- =======================================================================================
--- WARNING: I am not responsible for any content loss or crashes while using this plugin.
--- =======================================================================================
 -- Plugin: REPLICATE.lua
 -- Programmer: Cooper Santillan
--- Last Modified: March 30, 2020 06:28pm
+-- Last Modified: September 30, 2021 11:15pm
 -- =======================================================================================
 -- Description: Will prompt the user for the label or sequence number of a requested song
 --				to copy: song's sequence, Maker macro, and Adder macro. Will automatically
@@ -12,8 +10,8 @@
 --				version they would like to copy.
 -- =======================================================================================
 
--- Which user is this for? (Refer to SETUP Plugin)
-	local localUser = main_campus
+
+
 
 
 
@@ -31,11 +29,8 @@
 -- ==== MAIN: REPLICATE ==================================================================
 -- =======================================================================================
 local caller = select(2,...):gsub("%d+$", "") -- label of the plugin
-local function REPLICATE()
+function maker.task.replicate(localUser)
 	local user = localUser
-
-    local makerVar = 'MAKER' -- User Variable used in grandMA2 software
-    							-- Keep as single string (no whitespace)
 
 	if not(maker.test.seq(user, caller)) then return false; end
 	if not(maker.test.pool(user, caller)) then return false; end
@@ -121,5 +116,3 @@ end
 -- =======================================================================================
 -- ==== END OF REPLICATE =================================================================
 -- =======================================================================================
-
-return REPLICATE;
