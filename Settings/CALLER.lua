@@ -80,11 +80,12 @@ function maker.debugCaller()
 	for k in pairs(user) do
 		maker.util.print("User: "..k, caller)
 		for j in pairs(user[k]) do
-			maker.util.print("    Parameter: " ..j, caller)
+			maker.util.print("==> Parameter: " ..j, caller)
 		end
 	end
 
-	maker.util.print("\nPrinting all available task in Maker+ suite: ", caller)
+	maker.util.print("", caller)
+	maker.util.print("Printing all available task in Maker+ suite: ", caller)
 	for t in pairs(maker.task) do
 		maker.util.print("Task: " ..t, caller)
 	end
