@@ -85,7 +85,7 @@ function maker.debugCaller()
 	end
 
 	maker.util.print("", caller)
-	maker.util.print("Printing all available task in Maker+ suite: ", caller)
+	maker.util.print("Printing all available tasks in Maker+ suite: ", caller)
 	for t in pairs(maker.task) do
 		maker.util.print("Task: " ..t, caller)
 	end
