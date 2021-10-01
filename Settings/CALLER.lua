@@ -59,11 +59,11 @@ function maker.caller()
 	local singleTask = maker.task[taskVar]
 
 	if((singleUser == nil) and (singleTask == nil)) then
-		gma.gui.msgbox("ERROR in CALLER Plugin", "The user and program you tried using were not found.\n You set " ..UserVar .." as a user and " ..taskVar .." as the program to use.")
+		gma.gui.msgbox("ERROR in CALLER Plugin", "The user and program you tried using were not found.\n You set: \nUser: " ..userVar .."\nTask: " ..taskVar .."")
 	elseif(singleUser == nil) then
-		gma.gui.msgbox("ERROR in CALLER Plugin", "The user you tried using were not found.\n You tried using " ..UserVar .." as a user but it does not exist.")
+		gma.gui.msgbox("ERROR in CALLER Plugin", "The user you tried using were not found.\n You set: \nUser: " ..userVar)
 	elseif(singleTask == nil) then
-		gma.gui.msgbox("ERROR in CALLER Plugin", "The program you tried using were not found.\n You tried using the " ..taskVar .." program but it does not exist.")
+		gma.gui.msgbox("ERROR in CALLER Plugin", "The program you tried using were not found.\n You set: \nTask: " ..taskVar)
 	else
 		singleUser.self = userVar
 		singleTask(singleUser) -- exits caller and performs task with requested User
@@ -78,9 +78,8 @@ function maker.debugCaller()
 	-- cyle through users and determine which one is to be used
 	for k in pairs(localUser) do
 		maker.util.print("User: "..k, caller)
-			for j in pairs(maker.task) do
-				maker.util.print("    Task: " ..j, caller)
-			end
+		for j in pairs(maker.task) do
+			maker.util.print("    Task: " ..j, caller)
 		end
 	end
 end
