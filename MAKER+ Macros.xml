@@ -1,0 +1,318 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<MA xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schemas.malighting.de/grandma2/xml/MA" xsi:schemaLocation="http://schemas.malighting.de/grandma2/xml/MA http://schemas.malighting.de/grandma2/xml/3.9.60/MA.xsd" major_vers="3" minor_vers="9" stream_vers="60">
+	<Info datetime="2021-10-01T06:47:17" showfile="new show 2021-10-01" />
+	<Macro index="64" name="Walk In">
+		<Appearance Color="191919" />
+		<Macroline index="0">
+			<text>SetUserVar MAKER_USER = &quot;main_campus&quot;</text>
+		</Macroline>
+		<Macroline index="1">
+			<text>SetUserVar MAKER_TASK = &quot;archive&quot;</text>
+		</Macroline>
+		<Macroline index="2">
+			<text>SetUserVar MAKER_SONG = 0</text>
+		</Macroline>
+		<Macroline index="3" delay="0.1" />
+		<Macroline index="4">
+			<text>Plugin CALLER</text>
+		</Macroline>
+	</Macro>
+	<Macro index="65" name="Video">
+		<Appearance Color="007fff" />
+		<Macroline index="0">
+			<text>SetUserVar MAKER_USER = &quot;main_campus&quot;</text>
+		</Macroline>
+		<Macroline index="1">
+			<text>SetUserVar MAKER_TASK = &quot;altMaker&quot;</text>
+		</Macroline>
+		<Macroline index="2">
+			<text>SetUserVar MAKER_SONG = &quot;Video&quot;</text>
+		</Macroline>
+		<Macroline index="3" delay="0.1" />
+		<Macroline index="4">
+			<text>Plugin CALLER</text>
+		</Macroline>
+	</Macro>
+	<Macro index="66" name="Communion">
+		<Appearance Color="007fff" />
+		<Macroline index="0">
+			<text>SetUserVar MAKER_USER = &quot;main_campus&quot;</text>
+		</Macroline>
+		<Macroline index="1">
+			<text>SetUserVar MAKER_TASK = &quot;altMaker&quot;</text>
+		</Macroline>
+		<Macroline index="2">
+			<text>SetUserVar MAKER_SONG = &quot;Communion Setup&quot;</text>
+		</Macroline>
+		<Macroline index="3" delay="0.1" />
+		<Macroline index="4">
+			<text>Plugin CALLER</text>
+		</Macroline>
+		<Macroline index="5" delay="0.3" />
+		<Macroline index="6">
+			<text>SetUserVar MAKER_SONG = &quot;Communion&quot;</text>
+		</Macroline>
+		<Macroline index="7" delay="0.1" />
+		<Macroline index="8">
+			<text>Plugin CALLER</text>
+		</Macroline>
+	</Macro>
+	<Macro index="67" name="Announcements">
+		<Appearance Color="007fff" />
+		<Macroline index="0">
+			<text>SetUserVar MAKER_USER = &quot;main_campus&quot;</text>
+		</Macroline>
+		<Macroline index="1">
+			<text>SetUserVar MAKER_TASK = &quot;altMaker&quot;</text>
+		</Macroline>
+		<Macroline index="2">
+			<text>SetUserVar MAKER_SONG = &quot;Announcements&quot;</text>
+		</Macroline>
+		<Macroline index="3" delay="0.1" />
+		<Macroline index="4">
+			<text>Plugin CALLER</text>
+		</Macroline>
+	</Macro>
+	<Macro index="68" name="Message">
+		<Appearance Color="007fff" />
+		<Macroline index="0">
+			<text>SetUserVar MAKER_USER = &quot;main_campus&quot;</text>
+		</Macroline>
+		<Macroline index="1">
+			<text>SetUserVar MAKER_TASK = &quot;altMaker&quot;</text>
+		</Macroline>
+		<Macroline index="2">
+			<text>SetUserVar MAKER_SONG = &quot;Message&quot;</text>
+		</Macroline>
+		<Macroline index="3" delay="0.1" />
+		<Macroline index="4">
+			<text>Plugin CALLER</text>
+		</Macroline>
+	</Macro>
+	<Macro index="69" name="Walk Out">
+		<Appearance Color="181818" />
+		<Macroline index="0">
+			<text>SetUserVar MAKER_USER = &quot;main_campus&quot;</text>
+		</Macroline>
+		<Macroline index="1">
+			<text>SetUserVar MAKER_TASK = &quot;altMaker&quot;</text>
+		</Macroline>
+		<Macroline index="2">
+			<text>SetUserVar MAKER_SONG = &quot;Walk Out&quot;</text>
+		</Macroline>
+		<Macroline index="3" delay="0.1" />
+		<Macroline index="4">
+			<text>Plugin CALLER</text>
+		</Macroline>
+	</Macro>
+	<Macro index="72" name="New Song">
+		<Appearance Color="00ffff" />
+		<Macroline index="0">
+			<text>SetUserVar MAKER_USER = &quot;main_campus&quot;</text>
+		</Macroline>
+		<Macroline index="1">
+			<text>SetUserVar MAKER_TASK = &quot;build&quot;</text>
+		</Macroline>
+		<Macroline index="2" delay="0.1" />
+		<Macroline index="3">
+			<text>Plugin CALLER</text>
+		</Macroline>
+	</Macro>
+	<Macro index="73" name="Rename Song">
+		<Appearance Color="00ffff" />
+		<Macroline index="0">
+			<text>SetUserVar MAKER_USER = &quot;main_campus&quot;</text>
+		</Macroline>
+		<Macroline index="1">
+			<text>SetUserVar MAKER_TASK = &quot;rename&quot;</text>
+		</Macroline>
+		<Macroline index="2" delay="0.1" />
+		<Macroline index="3">
+			<text>Plugin CALLER</text>
+		</Macroline>
+	</Macro>
+	<Macro index="74" name="Edit Song">
+		<Appearance Color="00ffff" />
+		<Macroline index="0">
+			<text>SetUserVar MAKER_USER = &quot;main_campus&quot;</text>
+		</Macroline>
+		<Macroline index="1">
+			<text>SetUserVar MAKER_TASK = &quot;revise&quot;</text>
+		</Macroline>
+		<Macroline index="2" delay="0.1" />
+		<Macroline index="3">
+			<text>Plugin CALLER</text>
+		</Macroline>
+	</Macro>
+	<Macro index="76" name="Search Songs">
+		<Appearance Color="00ffff" />
+		<Macroline index="0">
+			<text>SetUserVar MAKER_USER = &quot;main_campus&quot;</text>
+		</Macroline>
+		<Macroline index="1">
+			<text>SetUserVar MAKER_TASK = &quot;finder&quot;</text>
+		</Macroline>
+		<Macroline index="2" delay="0.1" />
+		<Macroline index="3">
+			<text>Plugin CALLER</text>
+		</Macroline>
+	</Macro>
+	<Macro index="78" name="Renumber Cues">
+		<Appearance Color="00ffff" />
+		<Macroline index="0">
+			<text>SetUserVar MAKER_USER = &quot;main_campus&quot;</text>
+		</Macroline>
+		<Macroline index="1">
+			<text>SetUserVar MAKER_TASK = &quot;renumber&quot;</text>
+		</Macroline>
+		<Macroline index="2" delay="0.1" />
+		<Macroline index="3">
+			<text>Plugin CALLER</text>
+		</Macroline>
+	</Macro>
+	<Macro index="80" name="ALT_Walk In">
+		<Appearance Color="ffff00" />
+		<Macroline index="0">
+			<text>SetUserVar MAKER_USER = &quot;main_campus&quot;</text>
+		</Macroline>
+		<Macroline index="1">
+			<text>SetUserVar MAKER_TASK = &quot;archive&quot;</text>
+		</Macroline>
+		<Macroline index="2">
+			<text>SetUserVar MAKER_SONG = 1</text>
+		</Macroline>
+		<Macroline index="3" delay="0.1" />
+		<Macroline index="4">
+			<text>Plugin CALLER</text>
+		</Macroline>
+	</Macro>
+	<Macro index="81" name="ALT_Video">
+		<Appearance Color="ffff00" />
+		<Macroline index="0">
+			<text>SetUserVar MAKER_USER = &quot;main_campus&quot;</text>
+		</Macroline>
+		<Macroline index="1">
+			<text>SetUserVar MAKER_TASK = &quot;altAdder&quot;</text>
+		</Macroline>
+		<Macroline index="2">
+			<text>SetUserVar MAKER_SONG = &quot;Video&quot;</text>
+		</Macroline>
+		<Macroline index="3" delay="0.1" />
+		<Macroline index="4">
+			<text>Plugin CALLER</text>
+		</Macroline>
+	</Macro>
+	<Macro index="83" name="ALT_Announcements">
+		<Appearance Color="ffff00" />
+		<Macroline index="0">
+			<text>SetUserVar MAKER_USER = &quot;main_campus&quot;</text>
+		</Macroline>
+		<Macroline index="1">
+			<text>SetUserVar MAKER_TASK = &quot;altAdder&quot;</text>
+		</Macroline>
+		<Macroline index="2">
+			<text>SetUserVar MAKER_SONG = &quot;Announcements&quot;</text>
+		</Macroline>
+		<Macroline index="3" delay="0.1" />
+		<Macroline index="4">
+			<text>Plugin CALLER</text>
+		</Macroline>
+	</Macro>
+	<Macro index="84" name="ALT_Message">
+		<Appearance Color="ffff00" />
+		<Macroline index="0">
+			<text>SetUserVar MAKER_USER = &quot;main_campus&quot;</text>
+		</Macroline>
+		<Macroline index="1">
+			<text>SetUserVar MAKER_TASK = &quot;altAdder&quot;</text>
+		</Macroline>
+		<Macroline index="2">
+			<text>SetUserVar MAKER_SONG = &quot;Message&quot;</text>
+		</Macroline>
+		<Macroline index="3" delay="0.1" />
+		<Macroline index="4">
+			<text>Plugin CALLER</text>
+		</Macroline>
+	</Macro>
+	<Macro index="85" name="ALT_Walk Out">
+		<Appearance Color="ffff00" />
+		<Macroline index="0">
+			<text>SetUserVar MAKER_USER = &quot;main_campus&quot;</text>
+		</Macroline>
+		<Macroline index="1">
+			<text>SetUserVar MAKER_TASK = &quot;altAdder&quot;</text>
+		</Macroline>
+		<Macroline index="2">
+			<text>SetUserVar MAKER_SONG = &quot;Walk Out&quot;</text>
+		</Macroline>
+		<Macroline index="3" delay="0.1" />
+		<Macroline index="4">
+			<text>Plugin CALLER</text>
+		</Macroline>
+	</Macro>
+	<Macro index="89" name="Copy Song">
+		<Appearance Color="00ffff" />
+		<Macroline index="0">
+			<text>SetUserVar MAKER_USER = &quot;main_campus&quot;</text>
+		</Macroline>
+		<Macroline index="1">
+			<text>SetUserVar MAKER_TASK = &quot;replicate&quot;</text>
+		</Macroline>
+		<Macroline index="2" delay="0.1" />
+		<Macroline index="3">
+			<text>Plugin CALLER</text>
+		</Macroline>
+	</Macro>
+	<Macro index="90" name="Delete Song">
+		<Appearance Color="00ffff" />
+		<Macroline index="0">
+			<text>SetUserVar MAKER_USER = &quot;main_campus&quot;</text>
+		</Macroline>
+		<Macroline index="1">
+			<text>SetUserVar MAKER_TASK = &quot;squash&quot;</text>
+		</Macroline>
+		<Macroline index="2" delay="0.1" />
+		<Macroline index="3">
+			<text>Plugin CALLER</text>
+		</Macroline>
+	</Macro>
+	<Macro index="92" name="Condense Songs">
+		<Appearance Color="00ffff" />
+		<Macroline index="0">
+			<text>SetUserVar MAKER_USER = &quot;main_campus&quot;</text>
+		</Macroline>
+		<Macroline index="1">
+			<text>SetUserVar MAKER_TASK = &quot;condense&quot;</text>
+		</Macroline>
+		<Macroline index="2" delay="0.1" />
+		<Macroline index="3">
+			<text>Plugin CALLER</text>
+		</Macroline>
+	</Macro>
+	<Macro index="93" name="Organize Songs">
+		<Appearance Color="00ffff" />
+		<Macroline index="0">
+			<text>SetUserVar MAKER_USER = &quot;main_campus&quot;</text>
+		</Macroline>
+		<Macroline index="1">
+			<text>SetUserVar MAKER_TASK = &quot;realpha&quot;</text>
+		</Macroline>
+		<Macroline index="2" delay="0.1" />
+		<Macroline index="3">
+			<text>Plugin CALLER</text>
+		</Macroline>
+	</Macro>
+	<Macro index="94" name="Repair Songs">
+		<Appearance Color="00ffff" />
+		<Macroline index="0">
+			<text>SetUserVar MAKER_USER = &quot;main_campus&quot;</text>
+		</Macroline>
+		<Macroline index="1">
+			<text>SetUserVar MAKER_TASK = &quot;repair&quot;</text>
+		</Macroline>
+		<Macroline index="2" delay="0.1" />
+		<Macroline index="3">
+			<text>Plugin CALLER</text>
+		</Macroline>
+	</Macro>
+</MA>
