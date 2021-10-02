@@ -1291,9 +1291,10 @@ function maker.request(user, poolIndex, seqArray, caller)
 	if(1 == poolIndex) then
 		gma.cmd("Assign " ..maker.manage("Pool", user, 1) .." " ..seqArray[versionIndex] .." At Executor " ..gma.show.getvar('SELECTEDEXEC'))
 	else
-		gma.user.setvar(makerVar , seqArray[versionIndex])
-		gma.sleep(0.1)
 		local task = maker.task[user.name[poolIndex]]
+		local packedVar = maker.util.pack(user.self, user.name[poolIndex], seqArray[versionIndex])
+		gma.user.setvar(makerVar , packedVar)
+		gma.sleep(0.1)
 		task(user)
     	-- gma.cmd(currPool .." " ..user.name[poolIndex])
 	end

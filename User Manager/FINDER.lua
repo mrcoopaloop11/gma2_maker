@@ -88,7 +88,7 @@ function maker.task.finder(localUser)
 			gma.cmd("Appearance " ..maker.manage("Pool", user, i) .." " ..maker.util.thru(file.array[i])  .." /r=100 /g=100 /b=100")
 		end
 	end
-	if (nil ~= setOperands) then maker.request(user, setOperands, file.array[1]) end
+	if (nil ~= setOperands) then maker.request(user, setOperands, file.array[1], caller) end
 	gma.sleep(0.5)
 	for i=1, macroAmount do
 		if (file.instances[i]) then
