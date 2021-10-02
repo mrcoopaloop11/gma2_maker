@@ -32,7 +32,7 @@ local caller = select(2,...):gsub("%d+$", "") -- label of the plugin
 function maker.task.altMaker(localUser)
 	local altMAKERcpy = localUser.serv_content -- updating the global variable
 
-    local makerVar = 'MAKER_SONG' -- User Variable used in grandMA2 software
+    local makerVar = 'MAKER' 	-- User Variable used in grandMA2 software
     							-- Keep as single string (no whitespace)
 
 
@@ -81,6 +81,10 @@ function maker.task.altMaker(localUser)
 						caller)
 		return -13;
 	end
+
+	-- this function returns user, task, and song name
+	-- we only need the song name
+	local _,_,assetVar = maker.util.unpack(assetVar, caller)
 
 	-- test whether the MA user variable is a number or a string
 	-- assume that if variable is number, user wants specific cue number

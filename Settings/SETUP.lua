@@ -88,12 +88,8 @@
 
 -- ==== DELETE ALL VARS USED FOR MAKER+ ==================================================
 	function deleteVars()
-		gma.show.setvar("MAKER_USER" , nil)
-		gma.user.setvar("MAKER_USER" , nil)
-		gma.show.setvar("MAKER_TASK" , nil)
-		gma.user.setvar("MAKER_TASK" , nil)
-		gma.show.setvar("MAKER_SONG" , nil)
-		gma.user.setvar("MAKER_SONG" , nil)
+		gma.show.setvar("MAKER" , nil)
+		gma.user.setvar("MAKER" , nil)
 	end
 
 -- ==== RELOAD ALL PLUGINS ===============================================================

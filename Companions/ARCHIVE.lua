@@ -36,7 +36,7 @@ function maker.task.archive(localUser)
 	local assetSeq = localUser.serv_content
 	local assetCue = localUser.first_cue
 
-    local makerVar = 'MAKER_SONG' -- User Variable used in grandMA2 software
+    local makerVar = 'MAKER' 	-- User Variable used in grandMA2 software
     							-- Keep as single string (no whitespace)
 
 	if not(maker.test.archive(localUser, caller)) then return false; end
@@ -58,7 +58,8 @@ function maker.task.archive(localUser)
 
 	local boolContinue
 	local assetVar = gma.user.getvar(makerVar)
-	if(assetVar ~= nil) or (tonumber(assetVar) == 0) then
+	local _,_,assetVar = maker.util.unpack(assetVar, caller)
+	if(assetVar ~= nil) then
 		gma.user.setvar(makerVar , nil)
 		repeat
 			-- inform user that they are not able to use punctuation for their song name

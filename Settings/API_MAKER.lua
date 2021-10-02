@@ -151,22 +151,61 @@ end
 function maker.util.underVer(oldName, pool, verNum, caller)
 	local newName = oldName
 
+	if(verNum) and (verNum > 1) then newName = newName .." V" ..verNum end
+
 	if (pool == "Sequence") then
-		underscore = true
 		newName = newName:gsub(" ", "_")
 	elseif (pool == "Macro") then
-		underscore = false
 		newName = newName:gsub("_", " ")
-	else
-		underscore = false
 	end
 
-	if(verNum) and (verNum > 1) then
-		if(underscore) then return newName .."_V" ..verNum
-		else return newName .." V" ..verNum end
-	else return newName end
+	return newName
 end
 -- ==== END OF maker.util.underVer =======================================================
+
+
+
+-- ==== maker.util.unpack ================================================================
+-- Description:
+--
+-- Inputs:
+--		sName		-- string to split
+--		caller		-- what plugin is using this function
+--
+-- Output: String: Name
+-- =======================================================================================
+function maker.util.unpack(sName, caller)
+	local delimiter = "%%"
+	local t = {}
+	local counter = 1
+
+	for k in sName:gmatch(delimiter .."(.-)" ..delimiter) do
+		t[counter] = k
+		counter = counter + 1
+	end
+
+	return t --should output user, task, song name (in that order)
+end
+-- ==== END OF maker.util.unpack =========================================================
+
+
+
+-- ==== maker.util.pack ==================================================================
+-- Description:
+--
+-- Inputs:
+--		user		-- user name in maker+ suite
+--		task		-- what plugin from maker.task library
+--		sName		-- song Name
+--		caller		-- what plugin is using this function
+--
+-- Output: String for macros
+-- =======================================================================================
+function maker.util.pack(user, task, sName, caller)
+	local delimiter = "%%"
+	return delimiter ..user ..delimiter ..task ..delimiter ..sName ..delimiter 
+end
+-- ==== END OF maker.util.pack ===========================================================
 
 
 
@@ -1216,7 +1255,7 @@ function maker.request(user, poolIndex, seqArray, caller)
 	local trash, currPool
 	trash, currPool = maker.manage("Pool", user, poolIndex)
     local boolContinue = true
-	local makerVar = "MAKER_SONG"
+	local makerVar = "MAKER"
 
     if (1 == #seqArray) then
         versionIndex = 1
@@ -1252,8 +1291,10 @@ function maker.request(user, poolIndex, seqArray, caller)
 		gma.cmd("Assign " ..maker.manage("Pool", user, 1) .." " ..seqArray[versionIndex] .." At Executor " ..gma.show.getvar('SELECTEDEXEC'))
 	else
 		gma.user.setvar(makerVar , seqArray[versionIndex])
-		gma.sleep(0.2)
-    	gma.cmd(currPool .." " ..user.name[poolIndex])
+		gma.sleep(0.1)
+		local task = maker.task[user.name[poolIndex]]
+		task(user)
+    	-- gma.cmd(currPool .." " ..user.name[poolIndex])
 	end
 
 end

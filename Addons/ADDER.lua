@@ -38,7 +38,7 @@ function maker.task.adder(localUser)
 		return false
 	end
 
-    local makerVar = 'MAKER_SONG' -- User Variable used in grandMA2 software
+    local makerVar = 'MAKER'	-- User Variable used in grandMA2 software
     							-- Keep as single string (no whitespace)
 
 	-- test sequence variables and pool size
@@ -78,6 +78,10 @@ function maker.task.adder(localUser)
 						caller)
 		return -13;
 	end
+
+	-- this function returns user, task, and song name
+	-- we only need the song name
+	local _,_,songVar = maker.util.unpack(songVar, caller)
 
 	-- check if it is a number; if so, assume they want to use the sequence number instead of label
 	if(nil ~= (tonumber(songVar))) then

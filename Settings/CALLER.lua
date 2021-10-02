@@ -33,25 +33,17 @@
 local caller = select(2,...):gsub("%d+$", "") -- label of the plugin
 function maker.caller()
 	local localUser = setupUsers
-	-- which user needs this plugin
-	local userVar = gma.user.getvar('MAKER_USER')
+
+	local makerVar = gma.user.getvar('MAKER')
 	-- check if it exists
-	if(userVar == nil) then
-		maker.util.error("UserVar \'MAKER_USER\' was not found.",
+	if(makerVar == nil) then
+		maker.util.error("UserVar \'MAKER\' was not found.",
 						nil,
 						caller)
 		return false;
 	end
 
-	-- what task needs to be run
-	local taskVar = gma.user.getvar('MAKER_TASK')
-	-- check if it exists
-	if(taskVar == nil) then
-		maker.util.error("UserVar \'MAKER_TASK\' was not found.",
-						nil,
-						caller)
-		return false;
-	end
+	local userVar, taskVar, makerVar = maker.util.unpack(makerVar, caller)
 
 
 	-- check if the user input user and task correctly (if it exists)
