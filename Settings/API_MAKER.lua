@@ -184,7 +184,8 @@ function maker.util.unpack(sName, caller)
 		counter = counter + 1
 	end
 
-	return t --should output user, task, song name (in that order)
+	if (counter > 4) then return nil end
+	return t[1], t[2], t[3] --should output user, task, song name (in that order)
 end
 -- ==== END OF maker.util.unpack =========================================================
 

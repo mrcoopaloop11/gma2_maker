@@ -40,7 +40,7 @@ function maker.create.plugin(number, name, plugin, userName)
 
 	--gma.cmd("BlindEdit On")
 	gma.cmd("Store Macro " ..number)
-	gma.cmd("Store Macro 1." ..number ..".1 thru Macro 1." ..number ..".5")
+	gma.cmd("Store Macro 1." ..number ..".1 thru Macro 1." ..number ..".3")
 	gma.cmd("Label Macro " ..number .." \"" ..maker.util.underVer(name, "Macro") .."\"")
 	gma.cmd("Assign Macro 1." ..number ..".1 /cmd=\"SetUserVar $" ..makerVar .." = " ..maker.util.pack(userName, plugin, maker.util.underVer(name, "Sequence"), nil) .."\"")
 	gma.cmd("Assign Macro 1." ..number ..".2 /wait=0.1")

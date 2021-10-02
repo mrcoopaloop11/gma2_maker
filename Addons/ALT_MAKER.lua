@@ -84,7 +84,8 @@ function maker.task.altMaker(localUser)
 
 	-- this function returns user, task, and song name
 	-- we only need the song name
-	local _,_,assetVar = maker.util.unpack(assetVar, caller)
+	_,_,assetVar = maker.util.unpack(assetVar, caller)
+	assetVar = maker.util.underVer(assetVar, "Macro", nil, caller)
 
 	-- test whether the MA user variable is a number or a string
 	-- assume that if variable is number, user wants specific cue number
