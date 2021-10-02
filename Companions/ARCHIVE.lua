@@ -31,7 +31,7 @@
 -- ==== MAIN: ARCHIVE ====================================================================
 -- =======================================================================================
 local caller = select(2,...):gsub("%d+$", "") -- label of the plugin
-local function maker.task.archive(localUser)
+function maker.task.archive(localUser)
 	local loccpySeq = localUser.archive_seq
 	local assetSeq = localUser.serv_content
 	local assetCue = localUser.first_cue
