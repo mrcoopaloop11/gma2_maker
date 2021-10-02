@@ -202,8 +202,8 @@ end
 -- Output: String for macros
 -- =======================================================================================
 function maker.util.pack(user, task, sName, caller)
-	local delimiter = "%%"
-	return delimiter ..user ..delimiter ..task ..delimiter ..sName ..delimiter 
+	local delimiter = "%"
+	return delimiter ..user ..delimiter ..delimiter ..task ..delimiter ..delimiter ..sName ..delimiter 
 end
 -- ==== END OF maker.util.pack ===========================================================
 
