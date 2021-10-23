@@ -1,12 +1,40 @@
 -- =======================================================================================
 -- Plugin: STARTUP.lua
 -- Programmer: Cooper Santillan
--- Last Modified: October 23, 2021 12:12am
+-- Last Modified: October 23, 2021 10:55am
 -- =======================================================================================
 -- Description: This will add all tasks as macros and cues from your service content.
 -- =======================================================================================
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+-- ==== listTasks ========================================================================
+-- Description: Returns back to the user what tasks are available in their system
+--
+-- Inputs: Nothing
+--
+-- Output: Array of task names
+-- =======================================================================================
 local function listTasks()
 	local temp = {}
 	local c = 1
@@ -17,6 +45,16 @@ local function listTasks()
 	return temp
 end
 
+
+-- ==== removeTasks ======================================================================
+-- Description: Removing a number of entries from a list.
+--
+-- Inputs:
+--		tasks		-- array of string task names
+--		blacklist	-- entries to remove from the list
+--
+-- Output: list with items from the blacklist
+-- =======================================================================================
 local function removeTasks(tasks, blacklist)
 	local c = 1
 	local flag = true
@@ -35,7 +73,17 @@ local function removeTasks(tasks, blacklist)
 	end
 	return temp
 end
+-- ==== END OF removeTasks ===============================================================
 
+
+-- ==== listCues =========================================================================
+-- Description: Get the list of cues from a desired sequence
+--
+-- Inputs:
+--		serv_content	-- string name for sequence
+--
+-- Output: Array of cue labels
+-- =======================================================================================
 local function listCues(serv_content)
 	local seqHandle = G_OBJ.handle("Sequence \"" ..serv_content .."\"")
 	if not(G_OBJ.verify(seqHandle)) then return nil end --return if can't find
@@ -50,8 +98,19 @@ local function listCues(serv_content)
 
 	return temp
 end
+-- ==== END OF listCues ==================================================================
 
 
+
+-- ==== userPrompt =======================================================================
+-- Description: Repeats a prompt until getting the correct answer from user
+--
+-- Inputs:
+--		prompt		-- title
+--		caller		-- what function called this one
+--
+-- Output: value inputted from user
+-- =======================================================================================
 local function userPrompt(prompt, caller)
 	local userReq, boolContinue
 	repeat
@@ -63,10 +122,10 @@ local function userPrompt(prompt, caller)
 				return nil;
 			end
 		end
-		
+
 		userReq = gma.textinput(prompt, "")
 		boolContinue = true
-		
+
 		if (userReq == nil) then
 			maker.util.print(ESC_RED .."Plugin Terminated. Startup macros not created.",
 							caller)
@@ -80,11 +139,23 @@ local function userPrompt(prompt, caller)
 
 	return userReq
 end
+-- ==== END OF userPrompt ================================================================
 
+
+-- ==== createLayout =====================================================================
+-- Description: Left Upper side has altMaker cues. Left Lower side has altAdder cues.
+--				Rigth side has all available taks.
+--
+-- Inputs:
+--		user		-- what user, from settings.lua, do you want to use
+--		caller		-- who called this function
+--
+-- Output: returns nil if error
+-- =======================================================================================
 local function createLayout(user, caller)
 	local blacklist = {"maker", "adder", "altMaker", "altAdder", "archive"}
 	local tasks = removeTasks(listTasks(), blacklist)
-	local cues = listCues("Service Content")
+	local cues = listCues(user.serv_content)
 	local pool_size = user.pool_size
 	local spaces = pool_size
 
@@ -101,7 +172,7 @@ local function createLayout(user, caller)
 		number = start - layeredTasks + math.ceil(i/2) - 1
 		if((i % layers) ~= 0) then
 			number = number + pool_size
-		else 
+		else
 			number = number + (pool_size * 2)
 		end
 		maker.create.plugin(math.floor(number), nil, tasks[i], user.self)
@@ -123,9 +194,26 @@ local function createLayout(user, caller)
 		maker.create.plugin(math.floor(number), cues[i], "altMaker", user.self)
 		maker.create.plugin(math.floor(number + pool_size), cues[i], "altAdder", user.self)
 	end
-
 end
+-- ==== END OF createLayout ==============================================================
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+-- =======================================================================================
+-- ==== MAIN: STARTUP ====================================================================
+-- =======================================================================================
 local function startup()
 	local caller = "startup"
 	local userReq
@@ -139,7 +227,7 @@ local function startup()
 				return nil;
 			end
 		end
-		
+
 		userReq = gma.textinput("Which user is this for?", "")
 		boolContinue = true
 		for k,v in pairs(user) do
@@ -148,7 +236,7 @@ local function startup()
 				return createLayout(user[k], caller)
 			end
 		end
-		
+
 		if (userReq == nil) then
 			maker.util.print(ESC_RED .."Plugin Terminated. Startup macros not created.",
 							caller)
@@ -159,7 +247,9 @@ local function startup()
 			boolContinue = false
 		end
 	until boolContinue
-
 end
+-- =======================================================================================
+-- ==== END OF STARTUP =====================================================================
+-- =======================================================================================
 
 return startup

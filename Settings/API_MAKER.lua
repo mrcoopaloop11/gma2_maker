@@ -1,7 +1,7 @@
 -- =======================================================================================
 -- Plugin: API_MAKER.lua
 -- Programmer: Cooper Santillan
--- Last Modified: September 30, 2021 11:15pm
+-- Last Modified: October 23, 2021 10:55am
 -- =======================================================================================
 -- Description: All functions used to maintain the Maker+ plugin suite.
 -- =======================================================================================
@@ -176,7 +176,7 @@ end
 -- Output: String: Name
 -- =======================================================================================
 function maker.util.unpack(sName, caller)
-	local delimiter = "%%"
+	local delimiter = "%%" --regex literal %; instead of format
 	local t = {}
 	local counter = 1
 
@@ -185,8 +185,7 @@ function maker.util.unpack(sName, caller)
 		counter = counter + 1
 	end
 
-	if (counter > 4) then return nil end
-	return t[1], t[2], t[3] --should output user, task, song name (in that order)
+	return unpack(t)
 end
 -- ==== END OF maker.util.unpack =========================================================
 
@@ -196,16 +195,20 @@ end
 -- Description:
 --
 -- Inputs:
---		user		-- user name in maker+ suite
---		task		-- what plugin from maker.task library
---		sName		-- song Name
+--		arr		-- vector string of all things need to be packed
 --		caller		-- what plugin is using this function
 --
 -- Output: String for macros
 -- =======================================================================================
-function maker.util.pack(user, task, sName, caller)
+function maker.util.pack(arr, caller)
+	local final = ""
 	local delimiter = "%"
-	return delimiter ..user ..delimiter ..delimiter ..task ..delimiter ..delimiter ..sName ..delimiter 
+
+	for i=1, #arr do
+		final = final ..delimiter ..arr[i] ..delimiter
+	end
+
+	return final
 end
 -- ==== END OF maker.util.pack ===========================================================
 
