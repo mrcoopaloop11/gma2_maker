@@ -33,17 +33,25 @@
 -- Inputs:
 --		number		-- what macro number do you want to place this in
 --		name		-- label name for the macro
---		plugin		-- what plugin to use
+--		task		-- what plugin to use
+--		userName	-- what user is using this
 -- =======================================================================================
-function maker.create.plugin(number, name, plugin, userName)
+function maker.create.plugin(number, name, task, userName)
 	local makerVar = "MAKER"
+	
+	local title
+	if(name == nil) then 
+		title = task
+	else 
+		title = name
+	end
 
 	--gma.cmd("BlindEdit On")
 	gma.cmd("Store Macro " ..number)
 	gma.cmd("Store Macro 1." ..number ..".1 thru Macro 1." ..number ..".3")
-	gma.cmd("Label Macro " ..number .." \"" ..maker.util.underVer(name, "Macro") .."\"")
-	gma.cmd("Assign Macro 1." ..number ..".1 /cmd=\"SetUserVar $" ..makerVar .." = " ..maker.util.pack(userName, plugin, maker.util.underVer(name, "Sequence"), nil) .."\"")
-	gma.cmd("Assign Macro 1." ..number ..".2 /wait=0.1")
+	gma.cmd("Label Macro " ..number .." \"" ..maker.util.underVer(title, "Macro") .."\"")
+	gma.cmd("Assign Macro 1." ..number ..".1 /cmd=\"SetUserVar $" ..makerVar .." = " ..maker.util.pack(userName, task, maker.util.underVer(name, "Sequence")) .."\"")
+	--gma.cmd("Assign Macro 1." ..number ..".2 /wait=0.1")
 	gma.cmd("Assign Macro 1." ..number ..".3 /cmd=\"Plugin CALLER\"")
 	--gma.cmd("BlindEdit Off")
 end

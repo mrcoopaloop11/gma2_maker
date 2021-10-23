@@ -151,6 +151,7 @@ end
 function maker.util.underVer(oldName, pool, verNum, caller)
 	local newName = oldName
 
+	if(newName == nil) then return "" end
 	if(verNum) and (verNum > 1) then newName = newName .." V" ..verNum end
 
 	if (pool == "Sequence") then
