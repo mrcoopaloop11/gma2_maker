@@ -50,7 +50,7 @@ function maker.create.plugin(number, name, task, userName)
 	gma.cmd("Store Macro " ..number)
 	gma.cmd("Store Macro 1." ..number ..".1 thru Macro 1." ..number ..".3")
 	gma.cmd("Label Macro " ..number .." \"" ..maker.util.underVer(title, "Macro") .."\"")
-	gma.cmd("Assign Macro 1." ..number ..".1 /cmd=\"SetUserVar $" ..makerVar .." = " ..maker.util.pack({userName, task, maker.util.underVer(name, "Sequence")) .."\""})
+	gma.cmd("Assign Macro 1." ..number ..".1 /cmd=\"SetUserVar $" ..makerVar .." = " ..maker.util.pack({userName, task, maker.util.underVer(name, "Sequence")}) .."\"")
 	--gma.cmd("Assign Macro 1." ..number ..".2 /wait=0.1")
 	gma.cmd("Assign Macro 1." ..number ..".3 /cmd=\"Plugin CALLER\"")
 	--gma.cmd("BlindEdit Off")
@@ -69,7 +69,7 @@ function maker.edit.plugin(number, name, plugin, userName)
 	local makerVar = "MAKER"
 
 	gma.cmd("Label Macro " ..number .." \"" ..maker.util.underVer(name, "Macro") .."\"")
-	gma.cmd("Assign Macro 1." ..number ..".1 /cmd=\"SetUserVar $" ..makerVar .." = " ..maker.util.pack({userName, plugin, maker.util.underVer(name, "Sequence"), nil) .."\""})
+	gma.cmd("Assign Macro 1." ..number ..".1 /cmd=\"SetUserVar $" ..makerVar .." = " ..maker.util.pack({userName, plugin, maker.util.underVer(name, "Sequence")}) .."\"")
 	gma.cmd("Assign Macro 1." ..number ..".2 /wait=0.1")
 	gma.cmd("Assign Macro 1." ..number ..".3 /cmd=\"Plugin CALLER\"")
 end
