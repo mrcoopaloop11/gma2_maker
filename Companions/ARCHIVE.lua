@@ -59,7 +59,7 @@ function maker.task.archive(localUser)
 	local boolContinue
 	local assetVar = gma.user.getvar(makerVar)
 	local _,_,assetVar = maker.util.unpack(assetVar, caller)
-	if(assetVar ~= nil) then
+	if(assetVar ~= "") then
 		gma.user.setvar(makerVar , nil)
 		repeat
 			-- inform user that they are not able to use punctuation for their song name
