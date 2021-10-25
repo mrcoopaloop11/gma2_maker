@@ -142,6 +142,25 @@ end
 -- ==== END OF userPrompt ================================================================
 
 
+-- ==== dictLen ==========================================================================
+-- Description: Get the length of the dictionary
+--
+-- Inputs:
+--		tbl		-- table to sort through
+--
+-- Output: integer; total entries
+-- =======================================================================================
+local function dictLen(tbl)
+	local names = {}
+	local count = 0
+	for k,v in pairs(user) do
+		count = count + 1
+		names[count] = k
+	end
+	return names, count
+end
+-- ==== END OF createLayout ==============================================================
+
 -- ==== createLayout =====================================================================
 -- Description: Left Upper side has altMaker cues. Left Lower side has altAdder cues.
 --				Rigth side has all available taks.
@@ -166,7 +185,12 @@ local function createLayout(user, caller)
 	local layers = 2 -- eventually support for multi layers (now limited to two layers)
 	local layeredTasks = math.ceil(totalTasks / layers)
 
-	if(math.ceil(spaces / layers) < layeredTasks) then return nil end -- EXIT; DON'T MAKE ANYTHING
+	if(spaces <= (layeredTasks - 1)) then --minus one to preserve left side of columns from not being used
+		maker.util.error(ESC_RED .."Invalid pool size",
+						"There is not a big enough pool size for tasks to be placed in.",
+						caller)
+		return nil -- EXIT; DON'T MAKE ANYTHING
+	end
 
 	for i=1, totalTasks do
 		number = start - layeredTasks + math.ceil(i/2) - 1
@@ -218,6 +242,16 @@ local function startup()
 	local caller = "startup"
 	local userReq
 	local boolContinue = true
+	local userNames, userTotal = dictLen(user)
+
+	-- if there is one user
+	if(userTotal == 1) then
+		local onlyName = userNames[1]
+		user[onlyName].self = onlyName
+		return createLayout(user[onlyName], caller)
+	end
+
+	-- if there are more than one users
 	repeat
 		-- inform user that they are not able to use punctuation for their song name
 		if (boolContinue == false) then
