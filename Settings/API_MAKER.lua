@@ -40,6 +40,7 @@
 -- Output: Nothing
 -- =======================================================================================
 function maker.util.print(message, caller)
+	caller = caller or "PLUGIN"
 	gma.feedback(ESC_WHT ..caller .." : " ..tostring(message))
 	gma.echo(ESC_WHT ..caller .." : " ..tostring(message))
 end
@@ -58,6 +59,7 @@ end
 -- Output: Nothing
 -- =======================================================================================
 function maker.util.error(message, extra, caller)
+	caller = caller or "PLUGIN"
 	local message = message or ""
 	local more = extra or "There was a problem will using the " ..caller .."\n Please check if you setup up correctly \n or contact Maker+ developer"
 	gma.gui.msgbox("ERROR", more)
@@ -185,7 +187,7 @@ function maker.util.unpack(sName, caller)
 		counter = counter + 1
 	end
 
-	return unpack(t)
+	return table.unpack(t)
 end
 -- ==== END OF maker.util.unpack =========================================================
 
