@@ -103,7 +103,6 @@ This range of plugins can vary from adjusting individual songs (Its sequence and
 - Places an asset after the last cue
 - Uses the **$MAKER** user variable
 - Sets the **$MAKER** user variable as nothing at end of plugin
-- Looks through the sequence library for song name
 
 
 ### *ADDER Plugin*
@@ -119,7 +118,6 @@ This range of plugins can vary from adjusting individual songs (Its sequence and
 - Adds an asset to the next cue
 - Uses the **$MAKER** user variable
 - Sets the **$MAKER** user variable as nothing at end of plugin
-- Looks through the sequence library for song name
 
 ---
 ## Companions Folder
@@ -208,4 +206,4 @@ Questions | Answers
 Does Maker+ work on MA3? | Not at the moment.
 I used on of the User Managers and I have no idea where it went  :( | Check the Command Line History. At the end of every plugin is a summary of what the plugin did.
 I HAVE **IDEAS/BUGS**!!! | You can either create a `Issues` message on Github, email: csantillan@eastside.com, or DM on Instagram: **@mrcoopaloop**
-Do you have tutorial videos? | [Here is the playlist :)](https://www.youtube.com/watch?v=eXnK9hRVN3k&list=PLRSV3X_VskNT6akKFeNY4hFJZFu40O7Xr) Currently not available...
+Do you have tutorial videos? | [Here is the playlist :)](https://www.youtube.com/watch?v=eXnK9hRVN3k&list=PLRSV3X_VskNT6akKFeNY4hFJZFu40O7Xr)
